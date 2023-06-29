@@ -12,10 +12,10 @@ html {
 
 
 body {
+  background-color: #FAFAFA;
   margin: 0px;
   padding:0;
   position: relative;
-  overflow-x: hidden;
 }
 
 h1,
@@ -30,4 +30,13 @@ ul, li{
   list-style: none;
   padding: 0px;
   margin: 0px;
+}
+
+main {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

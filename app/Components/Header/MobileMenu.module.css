@@ -1,0 +1,25 @@
+.mobileButton {
+    display: flex;
+    font-size: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#hamburger {
+    color: white;
+    display: block;
+    border-top: 4px solid;
+}
+
+#hamburger::before,
+#hamburger::after {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 4px;
+    background-color: currentColor;
+    margin-top: 5px;
+    transition: .3s;
+    position: relative;
+}
