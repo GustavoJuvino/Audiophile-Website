@@ -1,19 +1,36 @@
-"use client";
-import React, { useState } from 'react';
-import styles from "./Header/MobileMenu.module.css"
+import React from 'react';
 
-const MobileMenu = () => {
-    const [active, setActive] = useState(false);
+interface MobileMenuProps { active: boolean };
 
+const MobileMenu:React.FC<MobileMenuProps> = ({active}) => {
   return (
-    <section>
-        <div className={styles.mobileButton}>
-            <span
-                id={styles.hamburger}
-                className={active ? styles.active : ""}
-                onClick={() => setActive(!active)}
-            />
-        </div>
+    <section className="md:hidden">
+      <div className={active ? `
+          w-full
+          h-[340px]
+          mt-[5.5rem]
+          bg-white
+          absolute
+          left-0
+          z-[100]
+          duration-500
+        ` : ""}
+      >
+      </div>
+
+      {/* Background */}
+      {/* <div
+        className={active ? `
+          absolute
+          top-[5.5rem]
+          left-0
+          w-full
+          h-auto
+          bg-black
+          opacity-50
+          z-[90]
+        ` : ""}
+      /> */}
     </section>
   )
 }

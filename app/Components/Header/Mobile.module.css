@@ -10,6 +10,7 @@
     color: white;
     display: block;
     border-top: 4px solid;
+    cursor: pointer;
 }
 
 #hamburger::before,
@@ -23,3 +24,16 @@
     transition: .3s;
     position: relative;
 }
+
+#hamburger.active {
+    border-top: transparent;
+}
+
+.active::after {
+    transform: rotate(-90deg);
+    top: -9.5px;
+} 
+
+.active {
+    transform: rotate(135deg);
+}   
