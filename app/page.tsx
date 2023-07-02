@@ -1,89 +1,11 @@
-import Image from "next/image";
-import Button from "./Components/Button";
+import Main from "./Components/Home/Main";
+import Products from "./Components/Products";
 
 export default function Home() {
   return (
-    <main className="bg-onyx">
-      <section className="
-          lg:w-[1110px]
-          w-full
-          sm:h-[730px]
-          h-[630px]
-          flex
-          max-lg:flex-col
-          justify-between
-          max-lg:items-center
-          max-xl:sm:ml-8
-          max-xl:overflow-hidden
-        "
-      >
-
-        {/* Texts */}
-        <div className="
-            text-white
-            flex
-            flex-col
-            justify-center
-            max-lg:items-center
-            max-lg:text-center
-            max-lg:w-[380px]
-            max-lg:sm:mt-[160px]
-            mt-24
-            max-sm:px-4
-            z-40
-          "
-          >
-          <span className="text-overline uppercase opacity-50">
-            new product
-          </span>
-          <h1 className="mobile:text-6xl text-5xl my-6">
-            XX99 Mark II <br />
-            Headphones
-          </h1>
-          <p className="lg:w-[68%] text-base opacity-75 mb-10">
-            Experience natural, lifelike audio and exceptional
-            build quality made for the passionate music
-            enthusiast.
-          </p>
-          <Button type={1} value="see product" />
-        </div>
-
-        {/* Image */}
-        <div className="w-[700px] h-auto relative">
-          <Image 
-            width={700}
-            height={886}
-            alt="Headphones-Image"
-            src="/assets/home/desktop/image-main.png"
-            className="
-              absolute
-              lg:bottom-[-6.5rem]
-              sm:bottom-[-10rem]
-              bottom-[-12rem]
-              w-auto
-              lg:h-[886px]
-              h-[980px]
-              object-cover
-              z-[2]
-              max-lg:brightness-50
-              max-lg:opacity-70
-            "
-          />
-          <div className="
-              w-[500px]
-              h-[500px]
-              bg-[#2B2B2B]
-              rounded-full
-              absolute
-              bottom-[11rem]
-              left-[1rem]
-              z-[1]
-              blur-3xl
-              max-lg:hidden
-            "
-          />
-        </div>
-      </section>
+    <main className="w-full h-auto flex flex-col justify-center items-center">
+      <Main />
+      <Products />
     </main>
   )
 }

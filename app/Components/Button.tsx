@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
                 duration-300
                 ${type === 1 && "bg-raw-sienna hover:bg-light-raw-sienna"}
                 ${type === 2 && "border-[1px] border-black text-black hover:bg-black hover:text-white"}
-                ${type === 3 && "w-auto text-raw-sienna hover:text-light-raw-sienna"}
+                ${type === 3 && "w-auto text-black opacity-50 hover:text-raw-sienna hover:opacity-100"}
             `}
         >
             {type === 3 ? 
