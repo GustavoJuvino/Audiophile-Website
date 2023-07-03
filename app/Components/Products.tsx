@@ -26,7 +26,6 @@ const Products = () => {
         lg:mt-[7.5rem]
         sm:mt-24
         mt-28
-        mb-[7.5rem]
         flex
         max-sm:flex-col
         justify-between
@@ -63,7 +62,7 @@ const Products = () => {
             <h3 className="text-lg uppercase">
               {item.product}
             </h3>
-            <Button type={3} value="shop" />
+            <Button type={4} value="shop" />
           </div>
         </div>
       )}

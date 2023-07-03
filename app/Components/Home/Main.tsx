@@ -55,6 +55,7 @@ const Main = () => {
                 height={886}
                 alt="Headphones-Image"
                 src="/assets/home/desktop/image-main.png"
+                priority
                 className="
                     absolute
                     lg:bottom-[-6.5rem]
