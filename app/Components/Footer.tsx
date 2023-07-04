@@ -33,8 +33,17 @@ const Footer = () => {
 
                 <ul className="sm:w-[430px] h-auto max-lg:mb-8 flex max-sm:flex-col justify-between max-sm:items-center max-sm:gap-4">
                     {headerItems.map((item) => (
-                        <li key={item} className="text-subTitle uppercase text-white">
-                            {item}
+                        <li 
+                            key={item}
+                            className="
+                                    text-subTitle
+                                    uppercase
+                                    text-white
+                                "
+                            >
+                                <p className="cursor-pointer duration-300 hover:text-raw-sienna">
+                                    {item}
+                                </p>
                         </li>
                     ))}
                 </ul>
@@ -51,9 +60,9 @@ const Footer = () => {
                 </span>
 
                 <div className="w-[104px] h-auto lg:absolute right-0 bottom-[80px] flex items-center justify-between">
-                    <Facebook />
-                    <Twitter />
-                    <Instagram />
+                    <Facebook id="social-media" />
+                    <Twitter id="social-media" />
+                    <Instagram id="social-media" />
                 </div>
             </div>
         </section>

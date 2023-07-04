@@ -32,10 +32,12 @@ ul, li{
   margin: 0px;
 }
 
-/* main {
-  width: auto;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+#social-media {
+  fill: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#social-media:hover {
+  fill: #D87D4A;
+}
