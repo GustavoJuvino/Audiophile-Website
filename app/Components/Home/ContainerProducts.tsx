@@ -14,7 +14,6 @@ const ContainerProducts = () => {
         gap-12
         lg:mt-[10.5rem]
         mt-24
-        mb-[12.5rem]
         max-xl:sm:px-8
         max-sm:px-4
       "

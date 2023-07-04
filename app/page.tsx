@@ -1,6 +1,7 @@
 import Main from "./Components/Home/Main";
 import Products from "./Components/Products";
 import ContainerProducts from "./Components/Home/ContainerProducts";
+import AudioGear from "./Components/AudioGear";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
       <Main />
       <Products />
       <ContainerProducts />
+      <div className="lg:my-[12.5rem] sm:my-24 my-[7.5rem]">
+        <AudioGear />
+      </div>
     </main>
   )
 }
