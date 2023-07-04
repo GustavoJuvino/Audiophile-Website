@@ -1,6 +1,6 @@
-
 import { Manrope } from 'next/font/google'
 import Header from "./Components/Header/Header"
+import Footer from "./Components/Footer"
 import './globals.css'
 
 export const metadata = {
@@ -23,6 +23,7 @@ export default function RootLayout({
       <body className={manrope.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )

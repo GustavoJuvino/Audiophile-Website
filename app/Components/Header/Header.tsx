@@ -4,7 +4,7 @@ import { Cart, Logo } from "@/public/assets/svgs";
 import styles from "./Mobile.module.css";
 import MobileMenu from "../MobileMenu";
 
-const headerItems = [
+export const headerItems = [
     "home",
     "headphones",
     "speakers",
