@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Cart, Logo } from "@/public/assets/svgs";
 import styles from "./Mobile.module.css";
 import MobileMenu from "../MobileMenu";
+import { usePathname } from 'next/navigation'
 
 export const headerItems = [
     "home",
@@ -12,9 +13,19 @@ export const headerItems = [
 ]
 
 const Header = () => {
+    const pathname = usePathname();
     const [active, setActive] = useState(false);
+    console.log(pathname)
+
   return (
-    <header className="w-full h-[100px] flex justify-center bg-onyx">
+    <header className={`
+            w-full
+            h-[100px]
+            flex
+            justify-center
+            ${pathname === "/" ? "bg-onyx" : "bg-black" }
+        `}
+    >
         <div className="
                 w-[1110px]
                 mt-8
