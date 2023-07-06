@@ -1,8 +1,11 @@
+"use client";
+
 import React from 'react';
 import Image from "next/image";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
 
-const ProductsItems = [
+const CategoriesItems = [
   {
     id: 1,
     product: "headphones"
@@ -17,7 +20,9 @@ const ProductsItems = [
   },
 ]
 
-const Products = () => {
+const Categories = () => {
+  const router = useRouter()
+
   return (
     <section className="
         xl:w-[1110px]
@@ -34,7 +39,7 @@ const Products = () => {
         max-xl:px-4
       "
     >
-      {ProductsItems.map((item) =>
+      {CategoriesItems.map((item) =>
         <div 
           key={item.id}
           className="
@@ -62,7 +67,7 @@ const Products = () => {
             <h3 className="text-lg uppercase">
               {item.product}
             </h3>
-            <Button type={4} value="shop" />
+            <Button click={() => router.push(item.product)} type={4} value="shop" />
           </div>
         </div>
       )}
@@ -70,4 +75,4 @@ const Products = () => {
   )
 }
 
-export default Products;
+export default Categories;

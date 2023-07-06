@@ -36,7 +36,7 @@ const Main = () => {
                 <span className="text-overline uppercase opacity-50">
                     new product
                 </span>
-                <h1 className="mobile:text-6xl text-5xl my-6">
+                <h1 className="mobile:text-6xl text-5xl my-6 uppercase">
                 XX99 Mark II <br />
                 Headphones
                 </h1>

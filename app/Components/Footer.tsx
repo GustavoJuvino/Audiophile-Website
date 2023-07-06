@@ -2,6 +2,7 @@
 import React from 'react';
 import { Facebook, Instagram, Logo, Twitter } from "@/public/assets/svgs";
 import { headerItems } from "./Header/Header";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -30,7 +31,10 @@ const Footer = () => {
                         bg-raw-sienna
                     "
                 />
-                <Logo className="cursor-pointer mb-9" />
+
+                <Link href="/">
+                    <Logo className="cursor-pointer mb-9" />
+                </Link>
 
                 <ul className="sm:w-[430px] h-auto max-lg:mb-8 flex max-sm:flex-col justify-between max-sm:items-center max-sm:gap-4">
                     {headerItems.map((item) => (
@@ -42,9 +46,16 @@ const Footer = () => {
                                     text-white
                                 "
                             >
-                                <p className="cursor-pointer duration-300 hover:text-raw-sienna">
+                                <Link 
+                                    href={item === "home" ? "/" : item}
+                                    className="
+                                        cursor-pointer
+                                        duration-300
+                                        hover:text-raw-sienna
+                                    "
+                                >
                                     {item}
-                                </p>
+                                </Link>
                         </li>
                     ))}
                 </ul>

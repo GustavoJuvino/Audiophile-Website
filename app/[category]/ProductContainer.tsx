@@ -63,7 +63,16 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
                     new product
                 </span>
             }
-            <h1 className="sm:text-5xl text-2xl uppercase mt-4 mb-8 max-lg:sm:px-5">
+            <h1 className="
+                    sm:text-5xl
+                    text-2xl
+                    uppercase
+                    mt-4
+                    mb-8
+                    lg:pr-[170px]
+                    max-lg:sm:px-5
+                "
+            >
                 {name}
             </h1>
             <p className="opacity-50 mb-10">

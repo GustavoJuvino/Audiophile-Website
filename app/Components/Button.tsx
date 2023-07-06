@@ -6,14 +6,17 @@ type ButtonTypes = 1 | 2 | 3 | 4
 interface ButtonProps {
     type: ButtonTypes,
     value: string;
+    click: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
     type,
-    value
+    value,
+    click
 }) => {
     return(
         <button 
+            onClick={click}
             className={`
                 w-40
                 h-12

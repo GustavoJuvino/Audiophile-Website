@@ -3,6 +3,7 @@
         "id": 5,
         "slug": "zx7-speaker",
         "name": "ZX7 Speaker",
+        "reverse": true,
         "image": {
             "mobile": "/assets/products/zx7-speaker/mobile/image-product.jpg",
             "tablet": "/assets/products/zx7-speaker/tablet/image-product.jpg",
@@ -91,7 +92,6 @@
         "id": 6,
         "slug": "zx9-speaker",
         "name": "ZX9 Speaker",
-        "reverse": true,
         "image": {
             "mobile": "/assets/products/zx9-speaker/mobile/image-product.jpg",
             "tablet": "/assets/products/zx9-speaker/tablet/image-product.jpg",
