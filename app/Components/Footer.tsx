@@ -16,6 +16,7 @@ const Footer = () => {
             items-center
             max-xl:px-10
             relative
+            max-small-mobile:text-xs
         "
     >
         <section className="xl:w-[1110px] w-full h-full relative flex flex-col justify-center max-sm:items-center">
