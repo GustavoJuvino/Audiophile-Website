@@ -4,6 +4,20 @@ import ProductContainer from "./ProductContainer";
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
 
+type ImageProps = {
+    desktop: string,
+    mobile: string,
+}
+
+interface ProductProps {
+    id: number,
+    new: boolean,
+    name: string,
+    image: ImageProps,
+    description: string,
+    reverse?: boolean
+}
+
 export default async function page({params}: {params: {category: string}}) {
     const { category } = params;
 
@@ -26,7 +40,7 @@ export default async function page({params}: {params: {category: string}}) {
                         w-full
                         h-auto
                         flex
-                        flex-col
+                        flex-col-reverse
                         items-center
                         lg:gap-[10rem]
                         gap-[7.5rem]
@@ -38,16 +52,18 @@ export default async function page({params}: {params: {category: string}}) {
                         px-6
                     "
                 >
-                    <ProductContainer />
+                    {products.map((product: ProductProps) => (
+                        <ProductContainer 
+                            key={product.id}
+                            newProduct={product.new}
+                            name={product.name}
+                            description={product.description}
+                            src={product.image.desktop}
+                            srcMobile={product.image.mobile}
+                            reverse={product?.reverse}
+                        />
+                    ))}
                 </section>
-
-
-                {/* <h1>{category}</h1> */}
-                {/* {products.map((product: any) => (
-                    <div>
-                        {product.name}
-                    </div>
-                ))} */}
             </main>
         )
     } else return <h1>Not Founded</h1>
