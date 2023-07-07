@@ -45,14 +45,13 @@ const Header = () => {
                 />
             </div>
 
-            <Link href="/">
+            <Link href="/" className="h-[20px]">
                 <Logo className="cursor-pointer" />
             </Link>
             <ul className="w-[430px] flex justify-between max-md:hidden">
                 {headerItems.map((item) => 
-                    <li >
+                    <li key={item} >
                         <Link href={item === "home" ? "/" : item}
-                            key={item}
                             className="
                                 text-subTitle
                                 text-white

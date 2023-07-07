@@ -32,10 +32,7 @@ const Footer = () => {
                     "
                 />
 
-                <Link href="/">
-                    <Logo className="cursor-pointer mb-9" />
-                </Link>
-
+                <Logo className="cursor-pointer mb-9" />
                 <ul className="sm:w-[430px] h-auto max-lg:mb-8 flex max-sm:flex-col justify-between max-sm:items-center max-sm:gap-4">
                     {headerItems.map((item) => (
                         <li 

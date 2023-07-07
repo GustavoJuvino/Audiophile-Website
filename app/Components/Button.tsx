@@ -6,7 +6,7 @@ type ButtonTypes = 1 | 2 | 3 | 4
 interface ButtonProps {
     type: ButtonTypes,
     value: string;
-    click: () => void;
+    click?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ 

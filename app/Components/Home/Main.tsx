@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
 import Image from "next/image";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 const Main = () => {
+    const router = useRouter();
+
   return (
     <section className="bg-onyx w-full h-auto flex justify-center items-center">
         <section className="
@@ -45,7 +49,11 @@ const Main = () => {
                 build quality made for the passionate music
                 enthusiast.
                 </p>
-                <Button type={1} value="see product" />
+                <Button 
+                    click={() => router.push("/products/xx99-mark-two-headphones")}
+                    type={1}
+                    value="see product" 
+                />
             </div>
 
             {/* Image */}

@@ -1,5 +1,7 @@
 import getData from "../Helper/getData";
 import ProductContainer from "./ProductContainer";
+import Categories from "../Components/Categories";
+import AudioGear from "../Components/AudioGear";
 
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
@@ -13,6 +15,7 @@ interface ProductProps {
     id: number,
     new: boolean,
     name: string,
+    category: string
     image: ImageProps,
     description: string,
     reverse?: boolean
@@ -25,17 +28,17 @@ export default async function page({params}: {params: {category: string}}) {
     const isCategory = (value: any): value is Category => categories.includes(value);
 
     // Data Products
-    const products = isCategory(category) && await getData(category);
+    const products = isCategory(category) && await getData("products");
 
     if(isCategory(category)) {
         return (
-            <main>
+            <main className="w-full h-auto flex flex-col items-center">
                 <div className="w-full sm:h-[336px] h-[192px] bg-black flex justify-center items-center">
                     <h1 className="sm:text-5xl text-2xl text-white uppercase">
                         {category}
                     </h1>
                 </div>
-
+                
                 <section className="
                         w-full
                         h-auto
@@ -47,12 +50,11 @@ export default async function page({params}: {params: {category: string}}) {
                         lg:mt-[10rem]
                         sm:mt-[7.5rem]
                         mt-16
-                        mb-[10rem]
                         sm:px-8
                         px-6
                     "
                 >
-                    {products.map((product: ProductProps) => (
+                    {products.map((product: ProductProps) => product.category === category && (
                         <ProductContainer 
                             key={product.id}
                             newProduct={product.new}
@@ -64,6 +66,13 @@ export default async function page({params}: {params: {category: string}}) {
                         />
                     ))}
                 </section>
+                
+                <Categories />
+
+                <div className="lg:my-[10rem] my-[7.5rem]">
+                    <AudioGear />
+                </div>
+
             </main>
         )
     } else return <h1>Not Founded</h1>

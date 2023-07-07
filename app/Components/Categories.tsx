@@ -28,9 +28,7 @@ const Categories = () => {
         xl:w-[1110px]
         w-full
         h-auto
-        lg:mt-[7.5rem]
-        sm:mt-24
-        mt-28
+        mt-[172px]
         flex
         max-sm:flex-col
         justify-between
