@@ -1,27 +1,31 @@
 import Image from "next/image";
 import React from 'react';
-import Button from "../Components/Button";
+import Button from "./Button";
+import CartButton from "./Cart/CartButton";
 
 export interface ProductContainerProps {
     newProduct?: boolean;
     name: string;
     description: string;
+    price?: number;
     src: string;
     srcMobile: string;
     reverse?: boolean;
+    cart?: boolean;
 }
 
 const ProductContainer: React.FC<ProductContainerProps> = ({
     newProduct,
     name,
     description,
+    price,
     src,
     srcMobile,
-    reverse
+    reverse,
+    cart
 }) => {
   return (
     <div className={`
-            xl:w-[1110px]
             w-full
             xl:h-[560px]
             h-full
@@ -78,7 +82,17 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
             <p className="opacity-50 mb-10">
                 {description}
             </p>
-            <Button type={1} value="see product" />
+
+            <div className="flex flex-col gap-12">
+                {price && 
+                    <span className="text-lg">{`$ ${price.toLocaleString("en-US")}`}</span>
+                }
+
+                {cart ? (
+                    <CartButton />
+                ) : <Button type={1} value="see product" /> }
+            </div>
+            
         </div>
     </div>
   )

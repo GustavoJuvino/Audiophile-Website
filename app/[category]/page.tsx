@@ -1,5 +1,5 @@
 import getData from "../Helper/getData";
-import ProductContainer from "./ProductContainer";
+import ProductContainer from "../Components/ProductContainer";
 import Categories from "../Components/Categories";
 import AudioGear from "../Components/AudioGear";
 
@@ -11,7 +11,7 @@ type ImageProps = {
     mobile: string,
 }
 
-interface ProductProps {
+export interface ProductProps {
     id: number,
     new: boolean,
     name: string,
@@ -38,41 +38,40 @@ export default async function page({params}: {params: {category: string}}) {
                         {category}
                     </h1>
                 </div>
-                
-                <section className="
-                        w-full
-                        h-auto
-                        flex
-                        flex-col-reverse
-                        items-center
-                        lg:gap-[10rem]
-                        gap-[7.5rem]
-                        lg:mt-[10rem]
-                        sm:mt-[7.5rem]
-                        mt-16
-                        sm:px-8
-                        px-6
-                    "
-                >
-                    {products.map((product: ProductProps) => product.category === category && (
-                        <ProductContainer 
-                            key={product.id}
-                            newProduct={product.new}
-                            name={product.name}
-                            description={product.description}
-                            src={product.image.desktop}
-                            srcMobile={product.image.mobile}
-                            reverse={product?.reverse}
-                        />
-                    ))}
+
+                <section className="xl:w-[1110px] w-full h-auto max-xl:sm:px-8 max-sm:px-6">
+                    <div className="
+                           w-full
+                           h-auto
+                           flex
+                           flex-col-reverse
+                           items-center
+                           lg:gap-[10rem]
+                           gap-[7.5rem]
+                           lg:mt-[10rem]
+                           sm:mt-[7.5rem]
+                           mt-16
+                        "
+                    >
+                        {products.map((product: ProductProps) => product.category === category && (
+                            <ProductContainer 
+                                key={product.id}
+                                newProduct={product.new}
+                                name={product.name}
+                                description={product.description}
+                                src={product.image.desktop}
+                                srcMobile={product.image.mobile}
+                                reverse={product?.reverse}
+                            />
+                        ))}
+                    </div>
+
+                    <Categories />
+
+                    <div className="lg:my-[10rem] my-[7.5rem]">
+                        <AudioGear />
+                    </div>
                 </section>
-                
-                <Categories />
-
-                <div className="lg:my-[10rem] my-[7.5rem]">
-                    <AudioGear />
-                </div>
-
             </main>
         )
     } else return <h1>Not Founded</h1>
