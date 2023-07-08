@@ -1,6 +1,7 @@
+import { ProductProps } from "@/app/[category]/page";
 import getData from "@/app/Helper/getData";
 import ProductContainer from "@/app/Components/ProductContainer";
-import { ProductProps } from "@/app/[category]/page";
+import Features from "./Features";
 
 const products = [
     "xx99-mark-two-headphones",
@@ -8,7 +9,7 @@ const products = [
 ] as const;
 type Product = (typeof products)[number];
 
-type IncludesProps = {
+export type IncludesProps = {
     quantity: number;
     item: string;
 }
@@ -18,7 +19,7 @@ interface ItemsProps extends ProductProps {
     price: number;
     cart: boolean;
     features: string;
-    includes: IncludesProps
+    includes: IncludesProps[]
 }
 
 export default async function page({params}: {params: {product: string}}) {
@@ -44,32 +45,33 @@ export default async function page({params}: {params: {product: string}}) {
                     <div className="
                            w-full
                            h-auto
-                           flex
-                           flex-col-reverse
-                           items-center
-                           lg:gap-[10rem]
-                           gap-[7.5rem]
                            lg:mt-[10rem]
                            sm:mt-[7.5rem]
                            mt-16
                         "
                     >
                         {items.map((item: ItemsProps) => item.slug === product && (
-                            <ProductContainer
-                                key={item.id}
-                                newProduct={item.new}
-                                name={item.name}
-                                description={item.description}
-                                price={item.price}
-                                cart={true}
-                                src={item.image.desktop}
-                                srcMobile={item.image.mobile}
-                            />
+                            <div>
+                                <ProductContainer
+                                    key={item.id}
+                                    newProduct={item.new}
+                                    name={item.name}
+                                    description={item.description}
+                                    price={item.price}
+                                    cart={true}
+                                    src={item.image.desktop}
+                                    srcMobile={item.image.mobile}
+                                />
+
+                                <Features 
+                                    feature={item.features}
+                                    includes={item.includes}
+                                />
+                            </div>
+                            
                         ))}
                     </div>
-
-
-
+                
                 </section>
 
                 {/* <h1>{product}</h1>
