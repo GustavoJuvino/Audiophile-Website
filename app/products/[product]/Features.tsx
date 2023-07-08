@@ -16,10 +16,13 @@ const Features: React.FC<FeaturesProps> = ({
             h-auto
             mt-[10rem]
             flex
+            max-lg:flex-col
+            max-lg:sm:gap-[7.5rem]
+            gap-[5.5rem]
             justify-between
         "
     >
-        <div className="w-[660px] h-auto">
+        <div className="md:w-[660px] w-full h-auto">
             <h1 className="text-4xl uppercase">
                 Features
             </h1>
@@ -28,11 +31,18 @@ const Features: React.FC<FeaturesProps> = ({
             </p>
         </div>
 
-        <div className="w-[350px]">
+        <div className="
+                lg:w-[350px]
+                md:w-[549px]
+                w-full
+                max-lg:sm:flex
+                justify-between
+            "
+        >
             <h1 className="text-4xl uppercase">
                 in the box
             </h1>
-            <ul className="mt-8 flex flex-col gap-2">
+            <ul className="lg:mt-8 max-sm:mt-6 flex flex-col gap-2">
                 {includes.map((item) =>
                     <li
                         key={item.item}
