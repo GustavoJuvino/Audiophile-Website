@@ -1,7 +1,9 @@
+"use client";
 import { ProductProps } from "@/app/[category]/page";
 import getData from "@/app/Helper/getData";
 import ProductContainer from "@/app/Components/ProductContainer";
 import Features from "./Features";
+import { useRouter } from "next/navigation";
 
 const products = [
     "xx99-mark-two-headphones",
@@ -23,6 +25,7 @@ interface ItemsProps extends ProductProps {
 }
 
 export default async function page({params}: {params: {product: string}}) {
+    const router = useRouter();
     const { product } = params
 
     // user-defined guard
@@ -43,13 +46,22 @@ export default async function page({params}: {params: {product: string}}) {
                     "
                 >
                     <div className="
-                           w-full
-                           h-auto
-                           lg:mt-[10rem]
-                           sm:mt-[7.5rem]
-                           mt-16
+                            w-full
+                            h-auto
+                            lg:mt-20
+                            sm:mt-8
+                            mt-4
                         "
                     >
+                        <div
+                            onClick={() => router.back()}
+                            className=" lg:mb-14 sm:mb-6 mb-4"
+                        >
+                            <span className="font-bold opacity-50 cursor-pointer"> 
+                                Go Back
+                            </span>
+                        </div>
+
                         {items.map((item: ItemsProps) => item.slug === product && (
                             <div>
                                 <ProductContainer
@@ -72,15 +84,9 @@ export default async function page({params}: {params: {product: string}}) {
                         ))}
                     </div>
                 
-                </section>
+                    <div></div>
 
-                {/* <h1>{product}</h1>
-                {items?.map((item: any) => item.slug === product && (
-                    <div key={item.id}>
-                        <h2>{item.name}</h2>
-                        <h2>{item.description}</h2>
-                    </div>
-                ))} */}
+                </section>
             </main>
         )
     } else return <h1>Not Founded</h1>

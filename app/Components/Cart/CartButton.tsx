@@ -3,7 +3,7 @@ import Button from "../Button";
 
 const CartButton = () => {
   return (
-    <div className="w-[296px] h-auto flex justify-between">
+    <div className="small-mobile:w-[296px] h-auto flex justify-between">
       <div className="w-[120px] flex justify-around items-center font-bold bg-seashell">
         <span className="cursor-pointer opacity-25 duration-300 hover:text-raw-sienna hover:opacity-100">
           - 

@@ -30,10 +30,9 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
             xl:h-[560px]
             h-full
             flex
-            max-lg:flex-col
-            justify-between
-            items-center
             ${reverse && "flex-row-reverse"}
+            ${cart ? "lg:justify-between md:gap-[70px] max-md:flex-col" 
+                : "justify-between items-center max-lg:flex-col"}
         `}    
     >
         <Image 
@@ -46,36 +45,41 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
         />
 
          <Image 
+            id="product-image"
             priority
             width={540}
             height={352}
             alt={`${name} Mobile Image`}
             src={srcMobile}
-            className="lg:hidden w-[689px] h-[352px] object-cover"
+            className={`
+                lg:hidden
+                object-cover
+                ${cart ? "md:w-[281px] md:h-[480px]" : "w-[689px] h-[352px]"}
+            `}
         />
 
-        <div className="
+        <div className={`
                 lg:w-[40%]
-                sm:w-[65%]
                 h-auto
-                max-lg:mt-[3.25rem]
-                max-lg:text-center
-            "
+                max-lg:mt-8
+                ${cart ? "md:w-[40%] mobile:w-[327px]" 
+                    : "sm:w-[65%] max-lg:text-center" }     
+            `}    
         >
             {newProduct && 
                 <span className="text-overline uppercase text-raw-sienna">
                     new product
                 </span>
             }
-            <h1 className="
+            <h1 className={`
                     sm:text-5xl
                     text-2xl
                     uppercase
                     mt-4
                     mb-8
                     lg:pr-[170px]
-                    max-lg:sm:px-5
-                "
+                    ${!cart && "max-lg:sm:pr-5"}
+                `}
             >
                 {name}
             </h1>
@@ -83,7 +87,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
                 {description}
             </p>
 
-            <div className="flex flex-col gap-12">
+            <div className={`flex flex-col gap-12 ${!cart && "max-lg:items-center"}`}>
                 {price && 
                     <span className="text-lg">{`$ ${price.toLocaleString("en-US")}`}</span>
                 }
