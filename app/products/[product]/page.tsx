@@ -1,9 +1,10 @@
 "use client";
-import { ProductProps } from "@/app/[category]/page";
-import getData from "@/app/Helper/getData";
 import ProductContainer from "@/app/Components/ProductContainer";
 import Features from "./Features";
+import Gallery from "./Gallery";
+import { ProductProps } from "@/app/[category]/page";
 import { useRouter } from "next/navigation";
+import getData from "@/app/Helper/getData";
 
 const products = [
     "xx99-mark-two-headphones",
@@ -43,16 +44,10 @@ export default async function page({params}: {params: {product: string}}) {
                         h-auto
                         max-xl:sm:px-8
                         max-sm:px-6
+                        overflow-x-hidden
                     "
                 >
-                    <div className="
-                            w-full
-                            h-auto
-                            lg:mt-20
-                            sm:mt-8
-                            mt-4
-                        "
-                    >
+                    <div className=" w-ful h-auto lg:mt-20 sm:mt-8 mt-4">
                         <div
                             onClick={() => router.back()}
                             className=" lg:mb-14 sm:mb-6 mb-4"
@@ -79,12 +74,14 @@ export default async function page({params}: {params: {product: string}}) {
                                     feature={item.features}
                                     includes={item.includes}
                                 />
+
+                                <Gallery product={item.slug} />
                             </div>
                             
                         ))}
                     </div>
                 
-                    <div></div>
+                
 
                 </section>
             </main>

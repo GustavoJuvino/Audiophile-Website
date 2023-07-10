@@ -6,6 +6,7 @@ import MobileMenu from "../MobileMenu";
 import { usePathname } from 'next/navigation'
 import Link from "next/link";
 
+
 export const headerItems = [
     "home",
     "headphones",
@@ -67,14 +68,15 @@ const Header = () => {
                 )}
             </ul>
             <Cart className="max-sm:mr-4 cursor-pointer" />
-            <hr className="
+            <hr className={`
                     w-full
                     h-[1px]
                     absolute
                     mt-14
                     opacity-20
                     animate-divider
-                "
+                    ${pathname.includes("products") && "hidden"}
+                `}    
             /> 
         </div>
         <MobileMenu active={active} />
