@@ -9,7 +9,7 @@ const Gallery: React.FC<GalleryProps> = ({ product }) => {
     return (
         <div className="
                 w-full
-                sm:h-[592px]
+                xl:h-[592px]
                 flex
                 max-sm:flex-col
                 sm:gap-[30px]
@@ -40,7 +40,14 @@ const Gallery: React.FC<GalleryProps> = ({ product }) => {
                 height={592}
                 alt="Grid-Image-3"
                 src={`/assets/products/${product}/desktop/image-gallery-3.jpg`}
-                className="lg:w-[635px] lg:h-[592px] sm:w-[395px] h-[368px] rounded-lg object-cover"
+                className="
+                    lg:w-[635px]
+                    lg:h-[592px]
+                    sm:w-[395px]
+                    h-[368px]
+                    rounded-lg
+                    object-cover
+                "
             />
         </div>
     )

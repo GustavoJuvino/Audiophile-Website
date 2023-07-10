@@ -6,7 +6,7 @@ import AudioGear from "../Components/AudioGear";
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
 
-type ImageProps = {
+export type ImageProps = {
     desktop: string,
     mobile: string,
 }

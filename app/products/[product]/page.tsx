@@ -5,6 +5,7 @@ import Gallery from "./Gallery";
 import { ProductProps } from "@/app/[category]/page";
 import { useRouter } from "next/navigation";
 import getData from "@/app/Helper/getData";
+import Recommendations from "./Recommendations";
 
 const products = [
     "xx99-mark-two-headphones",
@@ -17,12 +18,18 @@ export type IncludesProps = {
     item: string;
 }
 
+type OthersProps = {
+    slug: string;
+    name: string;
+}
+
 interface ItemsProps extends ProductProps {
     slug: string;
     price: number;
     cart: boolean;
     features: string;
     includes: IncludesProps[]
+    others: OthersProps[]
 }
 
 export default async function page({params}: {params: {product: string}}) {
@@ -48,10 +55,7 @@ export default async function page({params}: {params: {product: string}}) {
                     "
                 >
                     <div className=" w-ful h-auto lg:mt-20 sm:mt-8 mt-4">
-                        <div
-                            onClick={() => router.back()}
-                            className=" lg:mb-14 sm:mb-6 mb-4"
-                        >
+                        <div onClick={() => router.back()} className=" lg:mb-14 sm:mb-6 mb-4">
                             <span className="font-bold opacity-50 cursor-pointer"> 
                                 Go Back
                             </span>
@@ -76,8 +80,23 @@ export default async function page({params}: {params: {product: string}}) {
                                 />
 
                                 <Gallery product={item.slug} />
+
+                                {/* Recommendations */}
+                                <div className="text-center lg:mt-[10rem] mt-[7.5rem]">
+                                    <h1 className="sm:text-4xl text-xl lg:mb-16 sm:mb-14 mb-10  uppercase">
+                                        you may also like
+                                    </h1>
+                                    <div className="flex max-sm:flex-col lg:gap-[30px] sm:gap-3 gap-14 justify-between">
+                                        {item.others.map((item: OthersProps) => (
+                                            <Recommendations 
+                                                key={item.name}
+                                                product={item.name}
+                                                slug={item.slug}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
-                            
                         ))}
                     </div>
                 
