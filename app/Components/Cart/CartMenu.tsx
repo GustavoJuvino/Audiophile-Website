@@ -12,22 +12,25 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
     if (activeCart) {
         return (
             <section 
+                id="cart-menu"
                 className="
-                    w-[377px]
+                    mobile:w-[377px]
+                    w-full
                     h-[488px]
                     rounded-lg
                     bg-white
                     absolute
-                    right-0
-                    top-[6rem]
+                    lg:top-[6rem]
+                    sm:top-[5.5rem]
+                    sm:right-0
                     z-[100]
                     flex
                     flex-col
                     items-center
                 "
             >
-                <section className="w-[313px] h-auto">
-                    <div className="flex justify-between mt-8">
+                <section className="sm:w-[313px] w-full h-auto max-sm:px-4">
+                    <div className="flex max-small-mobile:flex-col justify-between mt-8">
                         <h2 className="
                                 uppercase
                                 text-lg
@@ -48,7 +51,15 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         </span>
                     </div>
 
-                    <div className="flex justify-between items-center mt-8">
+                    <div className="
+                            flex
+                            max-small-mobile:flex-col
+                            small-mobile:justify-between
+                            small-mobile:items-center
+                            max-small-mobile:gap-4
+                            mt-8
+                        "
+                    >
                         <div className="flex">
                             <Image
                                 width={64}
@@ -109,7 +120,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         </span>
                     </div>
 
-                    <Button type={5} value="checkout" />
+      
                 </section>
             </section>
         )

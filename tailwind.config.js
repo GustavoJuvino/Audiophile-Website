@@ -24,7 +24,7 @@ module.exports = {
         divider: 'divider 1s ease-in-out forwards',
       },
       screens: {
-        "mobile": "500px",
+        "mobile": "380px",
         "small-mobile": "282px"
       },
       fontSize: {

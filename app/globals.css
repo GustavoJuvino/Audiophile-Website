@@ -37,6 +37,18 @@ ul, li{
   fill: #D87D4A;
 }
 
+/* Cart Menu Responsive */
+@media (max-width: 640px) {
+  #cart-menu { 
+    position: absolute;
+    top: 20rem;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    
+  }
+}
+
+
 span, #main-product-image {
   -webkit-user-select: none;
   -khtml-user-select: none;

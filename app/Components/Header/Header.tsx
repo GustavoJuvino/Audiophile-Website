@@ -18,7 +18,7 @@ export const headerItems = [
 const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
-    const [activeCart, setActiveCart] = useState(false);
+    const [activeCart, setActiveCart] = useState(true);
     
     // Click Outside - Cart
     const cartRef = useRef(null);
@@ -79,7 +79,7 @@ const Header = () => {
             </ul>
 
             {/* Cart */}
-            <div ref={cartRef} className="relative">
+            <div ref={cartRef} className="sm:relative">
                 <CartIcon 
                     onClick={() => setActiveCart(!activeCart)}
                     className="max-sm:mr-4 cursor-pointer"
@@ -91,8 +91,9 @@ const Header = () => {
                         bg-white
                         rounded-full
                         absolute
-                        top-[0.8rem]
-                        right-[-1rem]
+                        sm:top-[0.8rem]
+                        sm:right-[-1rem]
+                        right-0
                         flex
                         items-center
                         justify-center
@@ -118,18 +119,19 @@ const Header = () => {
 
         </div>
         <MobileMenu active={active} />
-        
+
         {/* Cart / Mobile Menu Background */}
         {activeCart && (
             <div 
                 className="
                     w-full
-                    h-full
+                    h-auto
                     bg-black
                     opacity-40
                     z-[90]
                     absolute
-                    top-[6.2rem]
+                    top-[6rem]
+                    bottom-0
                 "
             />
         )}
