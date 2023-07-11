@@ -118,6 +118,21 @@ const Header = () => {
 
         </div>
         <MobileMenu active={active} />
+        
+        {/* Cart / Mobile Menu Background */}
+        {activeCart && (
+            <div 
+                className="
+                    w-full
+                    h-full
+                    bg-black
+                    opacity-40
+                    z-[90]
+                    absolute
+                    top-[6.2rem]
+                "
+            />
+        )}
     </header>
   )
 }

@@ -20,7 +20,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                     absolute
                     right-0
                     top-[6rem]
-                    z-50
+                    z-[100]
                     flex
                     flex-col
                     items-center
