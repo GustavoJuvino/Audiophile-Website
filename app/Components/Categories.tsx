@@ -65,7 +65,11 @@ const Categories = () => {
             <h3 className="text-lg uppercase">
               {item.product}
             </h3>
-            <Button click={() => router.push(item.product)} type={4} value="shop" />
+            <Button
+              click={() => router.push(item.product)}
+              type={4}
+              value="shop" 
+              />
           </div>
         </div>
       )}

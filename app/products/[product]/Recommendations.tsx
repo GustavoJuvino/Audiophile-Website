@@ -1,16 +1,22 @@
-import Button from "@/app/Components/Button";
-import Image from "next/image";
+"use client";
+
 import React from 'react';
+import Image from "next/image";
+import Button from "@/app/Components/Button";
+import { useRouter } from "next/navigation";
 
 interface RecommendationsProps {
     product: string;
     slug: string;
 }
 
+
 const Recommendations: React.FC<RecommendationsProps> = ({
     product,
     slug
 }) => {
+    const router = useRouter();
+
   return (
     <div className="flex flex-col items-center">
         <Image 
@@ -23,7 +29,7 @@ const Recommendations: React.FC<RecommendationsProps> = ({
         <h1 className="text-xl mt-10 mb-8 uppercase">
             {product}
         </h1>
-        <Button type={1} value="see product" />
+        <Button click={() => router.push(slug)} type={1} value="see product" />
      </div>
   )
 }

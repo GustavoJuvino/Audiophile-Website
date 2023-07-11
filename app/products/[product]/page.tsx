@@ -1,15 +1,20 @@
-"use client";
 import ProductContainer from "@/app/Components/ProductContainer";
 import Features from "./Features";
 import Gallery from "./Gallery";
-import { ProductProps } from "@/app/[category]/page";
-import { useRouter } from "next/navigation";
-import getData from "@/app/Helper/getData";
 import Recommendations from "./Recommendations";
+import Categories from "@/app/Components/Categories";
+import AudioGear from "@/app/Components/AudioGear";
+import Back from "./Back";
+import { ProductProps } from "@/app/[category]/page";
+import getData from "@/app/Helper/getData";
 
 const products = [
+    "yx1-earphones",
+    "xx59-headphones",
     "xx99-mark-two-headphones",
     "xx99-mark-one-headphones",
+    "zx7-speaker",
+    "zx9-speaker",
 ] as const;
 type Product = (typeof products)[number];
 
@@ -32,8 +37,13 @@ interface ItemsProps extends ProductProps {
     others: OthersProps[]
 }
 
-export default async function page({params}: {params: {product: string}}) {
-    const router = useRouter();
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+  
+
+export default async function page({ params }: { params: { product: string } }) {
     const { product } = params
 
     // user-defined guard
@@ -42,7 +52,7 @@ export default async function page({params}: {params: {product: string}}) {
     // Data Products
     const items = isProduct(product) && await getData("products");
 
-    if(isProduct(product)) {
+    if (isProduct(product)) {
         return (
             <main className="w-full h-auto flex flex-col items-center">
                 <section className="
@@ -55,11 +65,8 @@ export default async function page({params}: {params: {product: string}}) {
                     "
                 >
                     <div className=" w-ful h-auto lg:mt-20 sm:mt-8 mt-4">
-                        <div onClick={() => router.back()} className=" lg:mb-14 sm:mb-6 mb-4">
-                            <span className="font-bold opacity-50 cursor-pointer"> 
-                                Go Back
-                            </span>
-                        </div>
+
+                        <Back />
 
                         {items.map((item: ItemsProps) => item.slug === product && (
                             <div>
@@ -74,7 +81,7 @@ export default async function page({params}: {params: {product: string}}) {
                                     srcMobile={item.image.mobile}
                                 />
 
-                                <Features 
+                                <Features
                                     feature={item.features}
                                     includes={item.includes}
                                 />
@@ -88,7 +95,7 @@ export default async function page({params}: {params: {product: string}}) {
                                     </h1>
                                     <div className="flex max-sm:flex-col lg:gap-[30px] sm:gap-3 gap-14 justify-between">
                                         {item.others.map((item: OthersProps) => (
-                                            <Recommendations 
+                                            <Recommendations
                                                 key={item.name}
                                                 product={item.name}
                                                 slug={item.slug}
@@ -99,9 +106,12 @@ export default async function page({params}: {params: {product: string}}) {
                             </div>
                         ))}
                     </div>
-                
-                
 
+                    <Categories />
+
+                    <div className="lg:my-[10rem] my-[7.5rem]">
+                        <AudioGear />
+                    </div>
                 </section>
             </main>
         )

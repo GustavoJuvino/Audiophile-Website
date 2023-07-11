@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-
 body {
   background-color: #FAFAFA;
   margin: 0px;
