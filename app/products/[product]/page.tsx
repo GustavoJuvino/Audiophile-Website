@@ -5,7 +5,7 @@ import Recommendations from "./Recommendations";
 import Categories from "@/app/Components/Categories";
 import AudioGear from "@/app/Components/AudioGear";
 import Back from "./Back";
-import { ProductProps } from "@/app/[category]/page";
+import { ProductProps } from "@/app/types/Types";
 import getData from "@/app/Helper/getData";
 
 const products = [
@@ -69,9 +69,8 @@ export default async function page({ params }: { params: { product: string } }) 
                         <Back />
 
                         {items.map((item: ItemsProps) => item.slug === product && (
-                            <div>
+                            <div key={item.id}>
                                 <ProductContainer
-                                    key={item.id}
                                     newProduct={item.new}
                                     name={item.name}
                                     description={item.description}

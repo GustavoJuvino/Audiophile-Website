@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from 'react';
-import { Cart, Logo } from "@/public/assets/svgs";
+import { CartIcon, Logo } from "@/public/assets/svgs";
 import styles from "./Mobile.module.css";
 import MobileMenu from "../MobileMenu";
 import { usePathname } from 'next/navigation'
 import Link from "next/link";
+import Cart from "../Cart/Cart";
 
 
 export const headerItems = [
@@ -67,7 +68,7 @@ const Header = () => {
                     </li>
                 )}
             </ul>
-            <Cart className="max-sm:mr-4 cursor-pointer" />
+            <CartIcon className="max-sm:mr-4 cursor-pointer" />
             <hr className={`
                     w-full
                     h-[1px]
@@ -78,6 +79,7 @@ const Header = () => {
                     ${pathname.includes("products") && "hidden"}
                 `}    
             /> 
+            <Cart />
         </div>
         <MobileMenu active={active} />
     </header>

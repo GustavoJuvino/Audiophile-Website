@@ -2,24 +2,10 @@ import getData from "../Helper/getData";
 import ProductContainer from "../Components/ProductContainer";
 import Categories from "../Components/Categories";
 import AudioGear from "../Components/AudioGear";
+import { ProductProps } from "../types/Types";
 
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
-
-export type ImageProps = {
-    desktop: string,
-    mobile: string,
-}
-
-export interface ProductProps {
-    id: number,
-    new: boolean,
-    name: string,
-    category: string
-    image: ImageProps,
-    description: string,
-    reverse?: boolean
-}
 
 export default async function page({params}: {params: {category: string}}) {
     const { category } = params;
