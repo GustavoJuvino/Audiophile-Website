@@ -11,7 +11,7 @@ const Back = () => {
         onClick={() => {
           router.back()
         }}
-        className=" lg:mb-14 sm:mb-6 mb-4"
+        className="w-[70px] lg:mb-14 sm:mb-6 mb-4"
     >
     <span className="font-bold opacity-50 cursor-pointer">
         Go Back

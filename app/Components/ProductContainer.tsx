@@ -36,6 +36,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
         `}    
     >
         <Image 
+            id="main-product-image"
             priority
             width={540}
             height={560}

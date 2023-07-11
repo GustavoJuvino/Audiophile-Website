@@ -64,7 +64,7 @@ export default async function page({ params }: { params: { product: string } }) 
                         overflow-x-hidden
                     "
                 >
-                    <div className=" w-ful h-auto lg:mt-20 sm:mt-8 mt-4">
+                    <div className="w-full h-auto lg:mt-20 sm:mt-8 mt-4">
 
                         <Back />
 

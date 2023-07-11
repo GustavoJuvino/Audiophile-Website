@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CartIcon, Logo } from "@/public/assets/svgs";
-import styles from "./Mobile.module.css";
 import MobileMenu from "../MobileMenu";
-import { usePathname } from 'next/navigation'
 import Link from "next/link";
-import Cart from "../Cart/Cart";
-
+import CartMenu from "../Cart/CartMenu";
+import styles from "./Mobile.module.css";
+import { usePathname } from 'next/navigation'
+import useClickOutside from "@/app/hooks/useClickOutside";
 
 export const headerItems = [
     "home",
@@ -18,6 +18,15 @@ export const headerItems = [
 const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
+    const [activeCart, setActiveCart] = useState(false);
+    
+    // Click Outside - Cart
+    const cartRef = useRef(null);
+    const { clickOutside } = useClickOutside();
+
+    useEffect(() => {
+        if(cartRef) clickOutside(cartRef, setActiveCart);
+    }, [cartRef, clickOutside, setActiveCart])
 
   return (
     <header className={`
@@ -68,7 +77,34 @@ const Header = () => {
                     </li>
                 )}
             </ul>
-            <CartIcon className="max-sm:mr-4 cursor-pointer" />
+
+            {/* Cart */}
+            <div ref={cartRef} className="relative">
+                <CartIcon 
+                    onClick={() => setActiveCart(!activeCart)}
+                    className="max-sm:mr-4 cursor-pointer"
+                />
+                
+                <span className="
+                        w-7
+                        h-5
+                        bg-white
+                        rounded-full
+                        absolute
+                        top-[0.8rem]
+                        right-[-1rem]
+                        flex
+                        items-center
+                        justify-center
+                        text-subTitle
+                    "
+                >
+                    1
+                </span>
+
+                <CartMenu activeCart={activeCart} />
+            </div>
+
             <hr className={`
                     w-full
                     h-[1px]
@@ -79,7 +115,7 @@ const Header = () => {
                     ${pathname.includes("products") && "hidden"}
                 `}    
             /> 
-            <Cart />
+
         </div>
         <MobileMenu active={active} />
     </header>
