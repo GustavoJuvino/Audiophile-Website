@@ -18,7 +18,7 @@ export const headerItems = [
 const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
-    const [activeCart, setActiveCart] = useState(true);
+    const [activeCart, setActiveCart] = useState(false);
     
     // Click Outside - Cart
     const cartRef = useRef(null);

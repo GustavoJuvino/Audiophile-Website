@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useRef } from 'react';
-import Button from "../Button";
+import React from 'react';
 
 interface CartProps {
     activeCart: boolean;

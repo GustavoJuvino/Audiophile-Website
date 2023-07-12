@@ -260,6 +260,7 @@
         "id": 4,
         "slug": "xx99-mark-two-headphones",
         "name": "XX99 Mark II Headphones",
+        "cart": "XX99 MK II",
         "image": {
             "mobile": "/assets/products/xx99-mark-two-headphones/mobile/image-product.jpg",
             "tablet": "/assets/product-xx99-mark-two-headphones/tablet/image-product.jpg",

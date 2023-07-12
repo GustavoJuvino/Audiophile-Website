@@ -37,12 +37,6 @@ interface ItemsProps extends ProductProps {
     others: OthersProps[]
 }
 
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
-  
-
 export default async function page({ params }: { params: { product: string } }) {
     const { product } = params
 

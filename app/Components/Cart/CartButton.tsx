@@ -1,11 +1,39 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocalStorage } from "usehooks-ts";
+import { usePathname } from 'next/navigation'
 import Button from "../Button";
 
+interface LocalProducts {
+  cart: string;
+  slug: string;
+  price: number;
+}
+
 const CartButton = () => {
+  const pathname = usePathname();
   const [count, setCount] = useState(0);
-  const [quantity, setQuantity] = useLocalStorage("quantity", count)
+  const [localData, setLocalData] = useState({
+    name: "",
+    slug: "",
+    price: 0,
+    quantity: 0
+  });
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await fetch("/Api/products");
+      const data = await res.json();
+
+      data.map((item: LocalProducts) => `/products/${item.slug}` === pathname && 
+        setLocalData({name: item.cart, slug: item.slug, price: item.price, quantity: count})
+      )       
+    }
+
+    fetchProducts();
+  }, [count]);
+
+  const [quantity, setQuantity] = useLocalStorage("quantity", localData);
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">
@@ -43,7 +71,7 @@ const CartButton = () => {
         </span>
       </div>
 
-      <Button click={() => setQuantity(count)} type={1} value="add to cart" />
+      <Button click={() => setQuantity(localData && localData)} type={1} value="add to cart" />
     </div>
   )
 }
