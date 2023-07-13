@@ -3,6 +3,7 @@
         "id": 1,
         "slug": "yx1-earphones",
         "name": "YX1 Wireless Earphones",
+        "cart": "YX1",
         "image": {
             "mobile": "/assets/products/yx1-earphones/mobile/image-product.jpg",
             "tablet": "/assets/products/yx1-earphones/tablet/image-product.jpg",
@@ -91,6 +92,7 @@
         "id": 2,
         "slug": "xx59-headphones",
         "name": "XX59 Headphones",
+        "cart": "XX59",
         "image": {
             "mobile": "/assets/products/xx59-headphones/mobile/image-product.jpg",
             "tablet": "/assets/product-xx59-headphones/tablet/image-product.jpg",
@@ -175,6 +177,7 @@
         "id": 3,
         "slug": "xx99-mark-one-headphones",
         "name": "XX99 Mark I Headphones",
+        "cart": "XX99 MK I",
         "reverse": true,
         "image": {
             "mobile": "/assets/products/xx99-mark-one-headphones/mobile/image-product.jpg",
@@ -349,6 +352,7 @@
         "id": 5,
         "slug": "zx7-speaker",
         "name": "ZX7 Speaker",
+        "cart": "ZX7",
         "reverse": true,
         "image": {
             "mobile": "/assets/products/zx7-speaker/mobile/image-product.jpg",
@@ -438,6 +442,7 @@
         "id": 6,
         "slug": "zx9-speaker",
         "name": "ZX9 Speaker",
+        "cart": "ZX9",
         "image": {
             "mobile": "/assets/products/zx9-speaker/mobile/image-product.jpg",
             "tablet": "/assets/products/zx9-speaker/tablet/image-product.jpg",
