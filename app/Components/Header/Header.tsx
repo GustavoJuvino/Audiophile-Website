@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import { CartIcon, Logo } from "@/public/assets/svgs";
-import MobileMenu from "../MobileMenu";
-import Link from "next/link";
-import CartMenu from "../Cart/CartMenu";
-import styles from "./Mobile.module.css";
 import { usePathname } from 'next/navigation'
 import useClickOutside from "@/app/hooks/useClickOutside";
+import { CartIcon, Logo } from "@/public/assets/svgs";
+import Link from "next/link";
+import MobileMenu from "../MobileMenu";
+import CartMenu from "../Cart/CartMenu";
+import styles from "./Mobile.module.css";
 
 export const headerItems = [
     "home",
@@ -84,8 +84,7 @@ const Header = () => {
                     onClick={() => setActiveCart(!activeCart)}
                     className="max-sm:mr-4 cursor-pointer"
                 />
-                
-                <span className="
+                    {/* <span className="
                         w-7
                         h-5
                         bg-white
@@ -98,10 +97,10 @@ const Header = () => {
                         items-center
                         justify-center
                         text-subTitle
-                    "
-                >
-                    1
-                </span>
+                        "
+                    >
+                        0
+                    </span> */}
 
                 <CartMenu activeCart={activeCart} />
             </div>

@@ -1,6 +1,7 @@
 import { Manrope } from 'next/font/google'
 import Header from "./Components/Header/Header"
 import Footer from "./Components/Footer"
+import { GlobalContextProvider } from "./Context/store"
 import './globals.css'
 
 export const metadata = {
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={manrope.className}>
-        <Header />
-        {children}
-        <Footer />
+        <GlobalContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </GlobalContextProvider>
       </body>
     </html>
   )

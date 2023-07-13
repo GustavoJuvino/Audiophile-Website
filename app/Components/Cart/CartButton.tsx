@@ -1,18 +1,22 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import { useLocalStorage } from "usehooks-ts";
 import { usePathname } from 'next/navigation'
+import { useLocalStorage } from "usehooks-ts";
+import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
+import { useGlobalContext } from "@/app/Context/store";
+import { productKeys } from "./CartMenu";
 import Button from "../Button";
 
 interface LocalProducts {
-  cart: string;
+  key: string;
   slug: string;
   price: number;
 }
 
+export let quantityProducts: object[] = [];
+
 const CartButton = () => {
   const pathname = usePathname();
-
   const [count, setCount] = useState(0);
   const [localData, setLocalData] = useState({
     name: "",
@@ -20,6 +24,11 @@ const CartButton = () => {
     price: 0,
     quantity: 0
   });
+  const { dataProducts } = useGetLocalStorage(); 
+  const { userId, setUserId } = useGlobalContext();
+
+  // Local Storage
+  const [storage, setStorage] = useLocalStorage(localData.name, localData);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,7 +37,7 @@ const CartButton = () => {
 
       data.map((item: LocalProducts) => `/products/${item.slug}` === pathname && 
         setLocalData({
-          name: item.cart,
+          name: item.key,
           slug: item.slug,
           price: item.price,
           quantity: count
@@ -37,9 +46,20 @@ const CartButton = () => {
     }
 
     fetchProducts();
+
+    setUserId("teste");
   }, [count]);
 
-  const [storage, setStorage] = useLocalStorage(localData.name, localData);
+  if(userId) console.log(userId)
+
+  // Quantity Products
+  // function checkQuantityProducts() {
+  //   productKeys.map((key) => {
+  //     if(dataProducts(key)) {
+  //       quantityProducts.push(dataProducts(key))
+  //     }
+  //   });
+  // }
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">
@@ -78,7 +98,9 @@ const CartButton = () => {
       </div>
 
       <Button 
-        click={() => setStorage(localData && localData)}
+        click={() => {
+          setStorage(localData && localData)
+        }}
         type={1}
         value="add to cart" 
       />

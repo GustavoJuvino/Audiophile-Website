@@ -1,23 +1,30 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 import useFetch from "@/app/hooks/useFetch";
-
+import { useGlobalContext } from "@/app/Context/store";
+import Button from "../Button";
 
 interface CartProps {
     activeCart: boolean;
 }
 
+export let productKeys: string[] = [];
+let currentProducts: object[] = [];
+
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const {data, request} = useFetch();
     const { dataProducts } = useGetLocalStorage();
+    const { userId, setUserId } = useGlobalContext();
+
+    if(userId) console.log(userId)
 
     useEffect(() => {
         request(`/Api/products`);
-    }, [data]);
+    }, []);
 
-    let productKeys = data.map((product: any) => product.cart)
+    productKeys = data.map((product: any) => product.key);
 
     if (activeCart) {
         return (
@@ -46,7 +53,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 text-lg
                             "
                         >
-                            Cart <span>{"(3)"}</span>
+                            Cart <span>{`(${currentProducts.length})`}</span>
                         </h2>
                         <span className="
                                 font-medium
@@ -134,6 +141,10 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         </span>
                     </div>
 
+                    <Button 
+                        type={5}
+                        value="checkout"
+                    />
       
                 </section>
             </section>

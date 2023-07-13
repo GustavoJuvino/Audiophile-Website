@@ -1,6 +1,5 @@
 import { useCallback } from "react";
 
-
 const useGetLocalStorage = () => {
     const dataProducts = useCallback((key: string) => {
         const localJSON = localStorage.getItem(key)
