@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useLocalStorage } from "usehooks-ts";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
@@ -47,19 +47,35 @@ const CartButton = () => {
 
     fetchProducts();
 
-    setUserId("teste");
   }, [count]);
-
-  if(userId) console.log(userId)
 
   // Quantity Products
   // function checkQuantityProducts() {
+  //   let arr: object[] = [];
+
   //   productKeys.map((key) => {
   //     if(dataProducts(key)) {
-  //       quantityProducts.push(dataProducts(key))
+  //       arr.push(dataProducts(key));
+  //       setUserId(arr.length)
   //     }
+
+
   //   });
   // }
+  const updateCart = () => {
+    let arr: object[] = [];
+    productKeys.map((key) => {
+      if(dataProducts(key)) {
+        arr.push(dataProducts(key));
+        setUserId(arr.length)
+      }
+    });
+
+  }
+
+  useEffect(() => { updateCart() }, [updateCart])
+
+
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">
@@ -100,6 +116,7 @@ const CartButton = () => {
       <Button 
         click={() => {
           setStorage(localData && localData)
+          updateCart()
         }}
         type={1}
         value="add to cart" 

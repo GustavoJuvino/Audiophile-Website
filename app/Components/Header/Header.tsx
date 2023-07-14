@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation'
 import useClickOutside from "@/app/hooks/useClickOutside";
+import { useGlobalContext } from "@/app/Context/store";
 import { CartIcon, Logo } from "@/public/assets/svgs";
 import Link from "next/link";
 import MobileMenu from "../MobileMenu";
@@ -19,6 +20,7 @@ const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
     const [activeCart, setActiveCart] = useState(false);
+    const { userId, setUserId } = useGlobalContext();
     
     // Click Outside - Cart
     const cartRef = useRef(null);
@@ -84,7 +86,8 @@ const Header = () => {
                     onClick={() => setActiveCart(!activeCart)}
                     className="max-sm:mr-4 cursor-pointer"
                 />
-                    {/* <span className="
+                {userId > 0 && (
+                    <span className="
                         w-7
                         h-5
                         bg-white
@@ -99,8 +102,9 @@ const Header = () => {
                         text-subTitle
                         "
                     >
-                        0
-                    </span> */}
+                        {userId}
+                    </span>
+                )}
 
                 <CartMenu activeCart={activeCart} />
             </div>

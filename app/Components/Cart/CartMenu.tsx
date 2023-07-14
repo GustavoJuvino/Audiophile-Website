@@ -18,8 +18,6 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { dataProducts } = useGetLocalStorage();
     const { userId, setUserId } = useGlobalContext();
 
-    if(userId) console.log(userId)
-
     useEffect(() => {
         request(`/Api/products`);
     }, []);
@@ -53,7 +51,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 text-lg
                             "
                         >
-                            Cart <span>{`(${currentProducts.length})`}</span>
+                            Cart <span>{userId && `(${userId > 0 ? userId : 0})`}</span>
                         </h2>
                         <span className="
                                 font-medium
