@@ -20,7 +20,7 @@ const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
     const [activeCart, setActiveCart] = useState(false);
-    const { userId, setUserId } = useGlobalContext();
+    const { quantityProducts } = useGlobalContext();
     
     // Click Outside - Cart
     const cartRef = useRef(null);
@@ -86,7 +86,7 @@ const Header = () => {
                     onClick={() => setActiveCart(!activeCart)}
                     className="max-sm:mr-4 cursor-pointer"
                 />
-                {userId > 0 && (
+                {quantityProducts > 0 && (
                     <span className="
                         w-7
                         h-5
@@ -102,7 +102,7 @@ const Header = () => {
                         text-subTitle
                         "
                     >
-                        {userId}
+                        {quantityProducts}
                     </span>
                 )}
 

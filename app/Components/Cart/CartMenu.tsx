@@ -6,21 +6,28 @@ import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
 import Button from "../Button";
 
-interface CartProps {
-    activeCart: boolean;
-}
+interface CartProps { activeCart: boolean };
 
 export let productKeys: string[] = [];
-let currentProducts: object[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const {data, request} = useFetch();
     const { dataProducts } = useGetLocalStorage();
-    const { userId, setUserId } = useGlobalContext();
+    const { quantityProducts, setQuantityProducts } = useGlobalContext();
 
-    useEffect(() => {
-        request(`/Api/products`);
-    }, []);
+    useEffect(() => { request(`/Api/products`) }, []);
+
+    const updateCart = () => {
+        let arr: object[] = [];
+        productKeys.map((key) => {
+          if(dataProducts(key)) {
+            arr.push(dataProducts(key));
+            setQuantityProducts(arr.length)
+          }
+        });
+    };
+
+    useEffect(() => { updateCart() }, [updateCart])
 
     productKeys = data.map((product: any) => product.key);
 
@@ -51,7 +58,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 text-lg
                             "
                         >
-                            Cart <span>{userId && `(${userId > 0 ? userId : 0})`}</span>
+                            Cart <span>{`(${quantityProducts > 0 ? quantityProducts : ""})`}</span>
                         </h2>
                         <span className="
                                 font-medium

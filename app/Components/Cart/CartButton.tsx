@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useLocalStorage } from "usehooks-ts";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
@@ -13,8 +13,6 @@ interface LocalProducts {
   price: number;
 }
 
-export let quantityProducts: object[] = [];
-
 const CartButton = () => {
   const pathname = usePathname();
   const [count, setCount] = useState(0);
@@ -25,7 +23,7 @@ const CartButton = () => {
     quantity: 0
   });
   const { dataProducts } = useGetLocalStorage(); 
-  const { userId, setUserId } = useGlobalContext();
+  const { setQuantityProducts } = useGlobalContext();
 
   // Local Storage
   const [storage, setStorage] = useLocalStorage(localData.name, localData);
@@ -49,33 +47,15 @@ const CartButton = () => {
 
   }, [count]);
 
-  // Quantity Products
-  // function checkQuantityProducts() {
-  //   let arr: object[] = [];
-
-  //   productKeys.map((key) => {
-  //     if(dataProducts(key)) {
-  //       arr.push(dataProducts(key));
-  //       setUserId(arr.length)
-  //     }
-
-
-  //   });
-  // }
   const updateCart = () => {
     let arr: object[] = [];
     productKeys.map((key) => {
       if(dataProducts(key)) {
         arr.push(dataProducts(key));
-        setUserId(arr.length)
+        setQuantityProducts(arr.length)
       }
     });
-
-  }
-
-  useEffect(() => { updateCart() }, [updateCart])
-
-
+  };
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">

@@ -3,20 +3,20 @@
 import { createContext, useContext, Dispatch, SetStateAction, useState } from "react";
 
 interface ContextProps {
-    userId: number;
-    setUserId: Dispatch<SetStateAction<number>>
+    quantityProducts: number;
+    setQuantityProducts: Dispatch<SetStateAction<number>>
 }
 
 const GlobalContext = createContext<ContextProps>({
-    userId: 0,
-    setUserId: (): number => 0
+    quantityProducts: 0,
+    setQuantityProducts: (): number => 0
 });
 
 export const GlobalContextProvider = ({ children }) => {
-    const [userId, setUserId] = useState(0);
+    const [quantityProducts, setQuantityProducts] = useState(0);
 
     return (
-        <GlobalContext.Provider value={{ userId, setUserId }}>
+        <GlobalContext.Provider value={{ quantityProducts, setQuantityProducts }}>
             {children}
         </GlobalContext.Provider>
     )
