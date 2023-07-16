@@ -20,7 +20,7 @@ const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState(false);
     const [activeCart, setActiveCart] = useState(false);
-    const { quantityProducts } = useGlobalContext();
+    const { quantityProducts, empty } = useGlobalContext();
     
     // Click Outside - Cart
     const cartRef = useRef(null);
@@ -86,7 +86,7 @@ const Header = () => {
                     onClick={() => setActiveCart(!activeCart)}
                     className="max-sm:mr-4 cursor-pointer"
                 />
-                {quantityProducts > 0 && (
+                {!empty && (
                     <span className="
                         w-7
                         h-5

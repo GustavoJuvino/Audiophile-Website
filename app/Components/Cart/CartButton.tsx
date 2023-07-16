@@ -22,8 +22,8 @@ const CartButton = () => {
     price: 0,
     quantity: 0
   });
-  const { dataProducts } = useGetLocalStorage(); 
-  const { setQuantityProducts } = useGlobalContext();
+  const { getLocalStorage } = useGetLocalStorage(); 
+  const { setQuantityProducts, setEmpty } = useGlobalContext();
 
   // Local Storage
   const [storage, setStorage] = useLocalStorage(localData.name, localData);
@@ -50,8 +50,8 @@ const CartButton = () => {
   const updateCart = () => {
     let arr: object[] = [];
     productKeys.map((key) => {
-      if(dataProducts(key)) {
-        arr.push(dataProducts(key));
+      if(getLocalStorage(key)) {
+        arr.push(getLocalStorage(key));
         setQuantityProducts(arr.length)
       }
     });
@@ -95,6 +95,7 @@ const CartButton = () => {
 
       <Button 
         click={() => {
+          setEmpty(false)
           setStorage(localData && localData)
           updateCart()
         }}

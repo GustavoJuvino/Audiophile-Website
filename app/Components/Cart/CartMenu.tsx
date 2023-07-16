@@ -12,33 +12,48 @@ export let productKeys: string[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const {data, request} = useFetch();
-    const { dataProducts } = useGetLocalStorage();
-    const { quantityProducts, setQuantityProducts } = useGlobalContext();
+    const { getLocalStorage } = useGetLocalStorage();
+    const { 
+        quantityProducts,
+        setQuantityProducts,
+        empty,
+        setEmpty,
+    } = useGlobalContext();
 
     useEffect(() => { request(`/Api/products`) }, []);
+    productKeys = data.map((product: any) => product.key);
 
     const updateCart = () => {
-        let arr: object[] = [];
+        let currentProducts: object[] = [];
+
         productKeys.map((key) => {
-          if(dataProducts(key)) {
-            arr.push(dataProducts(key));
-            setQuantityProducts(arr.length)
+          if(getLocalStorage(key)) {
+            currentProducts.push(getLocalStorage(key));
+            setQuantityProducts(currentProducts.length)
+            setEmpty(false)
           }
         });
     };
 
-    useEffect(() => { updateCart() }, [updateCart])
+    const removeAllProducts = () => {
+        setEmpty(true);
+        productKeys.map((key) => {
+            if(getLocalStorage(key)) {
+                localStorage.removeItem(key)
+            }
+        })
+    }
 
-    productKeys = data.map((product: any) => product.key);
+    useEffect(() => { updateCart() }, [updateCart, empty]);
 
     if (activeCart) {
         return (
             <section 
                 id="cart-menu"
-                className="
+                className={`
                     mobile:w-[377px]
                     w-full
-                    h-[488px]
+                    ${empty ? "h-[300px]" : "h-auto"}
                     rounded-lg
                     bg-white
                     absolute
@@ -49,7 +64,8 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                     flex
                     flex-col
                     items-center
-                "
+                `}
+                
             >
                 <section className="sm:w-[313px] w-full h-auto max-sm:px-4">
                     <div className="flex max-small-mobile:flex-col justify-between mt-8">
@@ -58,22 +74,27 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 text-lg
                             "
                         >
-                            Cart <span>{`(${quantityProducts > 0 ? quantityProducts : ""})`}</span>
+                            Cart 
+                            <span>{!empty ? `(${quantityProducts})` : ""}</span>
                         </h2>
-                        <span className="
-                                font-medium
-                                opacity-50
-                                cursor-pointer
-                                duration-300
-                                hover:underline
-                                hover:text-raw-sienna
-                            "
-                        >
-                            Remove All
-                        </span>
+                        {!empty && (
+                            <span
+                                onClick={() => removeAllProducts()} 
+                                className="
+                                    font-medium
+                                    opacity-50
+                                    cursor-pointer
+                                    duration-300
+                                    hover:underline
+                                    hover:text-raw-sienna
+                                "
+                            >
+                                Remove All
+                            </span>
+                        )}
                     </div>
 
-                    {productKeys.map((key) => dataProducts(key) && (
+                    {productKeys.map((key) => getLocalStorage(key) && (
                         <div 
                             key={key}
                             className="
@@ -95,10 +116,10 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 />
                                 <div className="ml-4">
                                     <h2 className="uppercase font-bold">
-                                        {dataProducts(key).name}
+                                        {getLocalStorage(key).name}
                                     </h2>
                                     <h3 className="font-bold opacity-50">
-                                        {`$ ${dataProducts(key)?.price}`}
+                                        {`$ ${getLocalStorage(key)?.price}`}
                                     </h3>
                                 </div>
                             </div>
@@ -137,20 +158,34 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         </div>
                     ))}
 
-                    <div className="flex justify-between mt-8 mb-6">
-                        <h2 className="uppercase opacity-50">
-                            Total
-                        </h2>
-                        <span className="text-lg">
-                            $ 5,396
-                        </span>
-                    </div>
+                    {empty && (
+                        <div className="mt-8 w-full h-full flex justify-center items-center text-center">
+                            <h1 className="text-lg opacity-50">
+                                Your cart is empty.
+                            </h1>
+                        </div>
+                    )}
 
-                    <Button 
-                        type={5}
-                        value="checkout"
-                    />
-      
+
+                    {!empty && (
+                        <div>
+                            <div className="flex justify-between mt-8 mb-6">
+                                <h2 className="uppercase opacity-50">
+                                    Total
+                                </h2>
+                                <span className="text-lg">
+                                    $ 5,396
+                                </span>
+                            </div>
+
+                            <div className="mb-8">
+                                <Button 
+                                    type={5}
+                                    value="checkout"
+                                />
+                            </div>
+                        </div>
+                    )}
                 </section>
             </section>
         )
