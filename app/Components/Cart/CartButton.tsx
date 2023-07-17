@@ -23,7 +23,7 @@ const CartButton = () => {
     quantity: 0
   });
   const { getLocalStorage } = useGetLocalStorage(); 
-  const { setQuantityProducts, setEmpty } = useGlobalContext();
+  const { setQuantityCart, setEmpty } = useGlobalContext();
 
   // Local Storage
   const [storage, setStorage] = useLocalStorage(localData.name, localData);
@@ -52,7 +52,7 @@ const CartButton = () => {
     productKeys.map((key) => {
       if(getLocalStorage(key)) {
         arr.push(getLocalStorage(key));
-        setQuantityProducts(arr.length)
+        setQuantityCart(arr.length)
       }
     });
   };
@@ -95,9 +95,11 @@ const CartButton = () => {
 
       <Button 
         click={() => {
-          setEmpty(false)
-          setStorage(localData && localData)
-          updateCart()
+          if(count > 0) {
+            setEmpty(false)
+            setStorage(localData && localData)
+            updateCart()
+          }
         }}
         type={1}
         value="add to cart" 

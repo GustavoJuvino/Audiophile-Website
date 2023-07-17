@@ -1,44 +1,67 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
 import Button from "../Button";
+import { useLocalStorage } from "usehooks-ts";
+import { usePathname } from "next/navigation";
 
 interface CartProps { activeCart: boolean };
+
+interface LocalProducts {
+    key: string;
+    slug: string;
+    price: number;
+}
 
 export let productKeys: string[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
-    const {data, request} = useFetch();
+    const { data, request } = useFetch();
     const { getLocalStorage } = useGetLocalStorage();
-    const { 
-        quantityProducts,
-        setQuantityProducts,
+    const {
+        quantityCart,
+        setQuantityCart,
         empty,
         setEmpty,
     } = useGlobalContext();
 
+    const [count, setCount] = useState<number>(0);
+    const [localData, setLocalData] = useState({
+        name: "",
+        slug: "",
+        price: 0,
+        quantity: count
+    });
+
+    // Local Storage
+    const [storage, setStorage] = useLocalStorage(localData.name, localData);
+
     useEffect(() => { request(`/Api/products`) }, []);
     productKeys = data.map((product: any) => product.key);
+
+    // if(count) console.log(count);
+
+
 
     const updateCart = () => {
         let currentProducts: object[] = [];
 
         productKeys.map((key) => {
-          if(getLocalStorage(key)) {
-            currentProducts.push(getLocalStorage(key));
-            setQuantityProducts(currentProducts.length)
-            setEmpty(false)
-          }
+            if (getLocalStorage(key)) {
+                currentProducts.push(getLocalStorage(key));
+                setQuantityCart(currentProducts.length)
+                setEmpty(false)
+            }
         });
     };
 
     const removeAllProducts = () => {
         setEmpty(true);
         productKeys.map((key) => {
-            if(getLocalStorage(key)) {
+            if (getLocalStorage(key)) {
                 localStorage.removeItem(key)
             }
         })
@@ -46,9 +69,15 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
 
     useEffect(() => { updateCart() }, [updateCart, empty]);
 
+    useEffect(() => { 
+            if(count) {
+                setStorage(localData)
+            }
+    }, [localData])
+
     if (activeCart) {
         return (
-            <section 
+            <section
                 id="cart-menu"
                 className={`
                     mobile:w-[377px]
@@ -65,7 +94,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                     flex-col
                     items-center
                 `}
-                
+
             >
                 <section className="sm:w-[313px] w-full h-auto max-sm:px-4">
                     <div className="flex max-small-mobile:flex-col justify-between mt-8">
@@ -74,12 +103,12 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 text-lg
                             "
                         >
-                            Cart 
-                            <span>{!empty ? `(${quantityProducts})` : ""}</span>
+                            Cart
+                            <span>{!empty ? `(${quantityCart})` : ""}</span>
                         </h2>
                         {!empty && (
                             <span
-                                onClick={() => removeAllProducts()} 
+                                onClick={() => removeAllProducts()}
                                 className="
                                     font-medium
                                     opacity-50
@@ -95,7 +124,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                     </div>
 
                     {productKeys.map((key) => getLocalStorage(key) && (
-                        <div 
+                        <div
                             key={key}
                             className="
                                 flex
@@ -139,10 +168,22 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                                 </span>
 
                                 <p className="text-subTitle">
-                                    1
+                                    {getLocalStorage(key).quantity}
                                 </p>
 
                                 <span
+                                    onClick={() => {
+                                        setCount(count + 1)
+
+                                        if (count) {
+                                            setLocalData({
+                                                name: getLocalStorage(key).name,
+                                                slug: getLocalStorage(key).slug,
+                                                price: getLocalStorage(key).price,
+                                                quantity: count
+                                            })
+                                        }
+                                    }}
                                     className="
                                         text-subTitle
                                         opacity-25
@@ -179,7 +220,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                             </div>
 
                             <div className="mb-8">
-                                <Button 
+                                <Button
                                     type={5}
                                     value="checkout"
                                 />
