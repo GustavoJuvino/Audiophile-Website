@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
@@ -17,6 +17,7 @@ interface LocalProducts {
 }
 
 export let productKeys: string[] = [];
+let qnt: number[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { data, request } = useFetch();
@@ -28,7 +29,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         setEmpty,
     } = useGlobalContext();
 
-    const [count, setCount] = useState<number>(0);
+    const [count, setCount] = useState(0);
     const [localData, setLocalData] = useState({
         name: "",
         slug: "",
@@ -42,7 +43,9 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
     useEffect(() => { request(`/Api/products`) }, []);
     productKeys = data.map((product: any) => product.key);
 
-    // if(count) console.log(count);
+    const [quantity, setQuantity]= useState(0)
+    qnt = productKeys.map((key) => getLocalStorage(key) && getLocalStorage(key).quantity)
+    let newQnt = qnt?.filter(e => e !== undefined)
 
 
 
@@ -53,6 +56,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
             if (getLocalStorage(key)) {
                 currentProducts.push(getLocalStorage(key));
                 setQuantityCart(currentProducts.length)
+                setQuantity(getLocalStorage(key).quantity)
                 setEmpty(false)
             }
         });
@@ -67,13 +71,25 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         })
     }
 
-    useEffect(() => { updateCart() }, [updateCart, empty]);
+    useEffect(() => { 
+        updateCart()
+     }, [updateCart, empty]);
 
     useEffect(() => { 
             if(count) {
                 setStorage(localData)
             }
-    }, [localData])
+    }, [count]);
+
+    function test(value: any) {
+        setLocalData({
+            name: value.name,
+            slug: value.slug,
+            price: value.price,
+            quantity: count
+        })
+    }
+    
 
     if (activeCart) {
         return (
@@ -173,16 +189,11 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
 
                                 <span
                                     onClick={() => {
-                                        setCount(count + 1)
-
-                                        if (count) {
-                                            setLocalData({
-                                                name: getLocalStorage(key).name,
-                                                slug: getLocalStorage(key).slug,
-                                                price: getLocalStorage(key).price,
-                                                quantity: count
-                                            })
+                                        if(count > 0 ) {
+                                            setCount((count) => count + 1)
+                                            test(getLocalStorage(key))
                                         }
+                                        
                                     }}
                                     className="
                                         text-subTitle
