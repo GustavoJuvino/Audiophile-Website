@@ -2,14 +2,10 @@
 
 import { createContext, useContext, Dispatch, SetStateAction, useState } from "react";
 
-interface LocalDataProps {
-
-}
-
 interface ContextProps {
     localData: LocalProductProps;
     setLocalData: Dispatch<SetStateAction<LocalProductProps>>;
-    
+
     quantityCart: number;
     setQuantityCart: Dispatch<SetStateAction<number>>
     

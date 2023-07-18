@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { useLocalStorage } from "usehooks-ts";
-import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
-import { useGlobalContext } from "@/app/Context/store";
-import { productKeys } from "./CartMenu";
+import React, { useEffect, useState } from 'react';
 import Button from "../Button";
+import { productKeys } from "./CartMenu";
+import { useLocalStorage } from "usehooks-ts";
+import { usePathname } from 'next/navigation';
+import { useGlobalContext } from "@/app/Context/store";
+import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 
 interface LocalProducts {
   key: string;
@@ -41,7 +41,7 @@ const CartButton = () => {
         }),
       )       
     }
-    
+
     fetchProducts();
 
   }, [count]);
@@ -58,28 +58,32 @@ const CartButton = () => {
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">
-      <div className="w-[120px] flex justify-around items-center font-bold bg-seashell">
-      <span 
-          onClick={() => {
-            setCount(count > 0 ? count - 1 : count )
-          }}
-          className="
-            cursor-pointer
-            opacity-25
-            duration-300
-            hover:text-raw-sienna
-            hover:opacity-100
-          "
-        >
-          -
-        </span>
+      <div className="
+          w-[120px]
+          flex
+          justify-around
+          items-center
+          font-bold
+          bg-seashell
+        "
+      >
+        <span 
+            onClick={() =>  setCount(count > 0 ? count - 1 : count )}
+            className="
+              cursor-pointer
+              opacity-25
+              duration-300
+              hover:text-raw-sienna
+              hover:opacity-100
+            "
+          >
+            -
+          </span>
         <p>
           {count}
         </p>
         <span 
-          onClick={() => {
-            setCount(count + 1)
-          }}
+          onClick={() => setCount(count + 1)}
           className="
             cursor-pointer
             opacity-25
