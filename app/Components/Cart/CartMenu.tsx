@@ -1,24 +1,14 @@
 "use client";
-import Image from "next/image";
-import React, { useCallback, useEffect, useState } from 'react';
-import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
+import React, { useEffect } from 'react';
+import Button from "../Button";
+import CartProduct from "./CartProduct";
 import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
-import Button from "../Button";
-import { useLocalStorage } from "usehooks-ts";
-import { usePathname } from "next/navigation";
-import CartProduct from "./CartProduct";
+import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 
 interface CartProps { activeCart: boolean };
 
-interface LocalProducts {
-    key: string;
-    slug: string;
-    price: number;
-}
-
 export let productKeys: string[] = [];
-let qnt: number[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { data, request } = useFetch();
@@ -30,34 +20,15 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         setEmpty,
     } = useGlobalContext();
 
-    const [count, setCount] = useState(0);
-    const [localData, setLocalData] = useState({
-        name: "",
-        slug: "",
-        price: 0,
-        quantity: count
-    });
-
-    // Local Storage
-    const [storage, setStorage] = useLocalStorage(localData.name, localData);
-
     useEffect(() => { request(`/Api/products`) }, []);
     productKeys = data.map((product: any) => product.key);
 
-    const [quantity, setQuantity]= useState(0)
-    qnt = productKeys.map((key) => getLocalStorage(key) && getLocalStorage(key).quantity)
-    let newQnt = qnt?.filter(e => e !== undefined)
-
-
-
     const updateCart = () => {
         let currentProducts: object[] = [];
-
         productKeys.map((key) => {
             if (getLocalStorage(key)) {
                 currentProducts.push(getLocalStorage(key));
                 setQuantityCart(currentProducts.length)
-                setQuantity(getLocalStorage(key).quantity)
                 setEmpty(false)
             }
         });
@@ -72,25 +43,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         })
     }
 
-    useEffect(() => { 
-        updateCart()
-     }, [updateCart, empty]);
-
-    useEffect(() => { 
-            if(count) {
-                setStorage(localData)
-            }
-    }, [count]);
-
-    function test(value: any) {
-        setLocalData({
-            name: value.name,
-            slug: value.slug,
-            price: value.price,
-            quantity: count
-        })
-    }
-    
+    useEffect(() => { updateCart() }, [updateCart, empty]);
 
     if (activeCart) {
         return (
@@ -155,7 +108,6 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                             </h1>
                         </div>
                     )}
-
 
                     {!empty && (
                         <div>
