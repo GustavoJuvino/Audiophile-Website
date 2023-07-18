@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/Context/store";
 import { useLocalStorage } from "usehooks-ts";
 
+let newLocalData: LocalProductProps & {quantity: number }
+
 const CartProduct: React.FC<LocalProductProps> = ({
     name,
     price,
@@ -14,15 +16,16 @@ const CartProduct: React.FC<LocalProductProps> = ({
     const [cartQuantity, setCartQuantity] = useState<number>(quantity);
     const { localData, setLocalData } = useGlobalContext();
 
-    const [storage, setStorage] = useLocalStorage(localData.name, localData);
+    const [storage, setStorage] = useLocalStorage(localData.name, newLocalData);
 
     useEffect(() => {
-        
-    }, [])
+        newLocalData = Object.assign(localData, {quantity: cartQuantity})
+        setStorage(newLocalData);
+    }, [cartQuantity])
 
     return (
         <div
-            key={name}
+            key={slug}
             className="
                 flex
                 max-small-mobile:flex-col
@@ -69,8 +72,8 @@ const CartProduct: React.FC<LocalProductProps> = ({
                 </p>
 
                 <span
-                    onClick={() => {
-                        setCartQuantity(cartQuantity + 1)                        
+                    onClick={() => { 
+                        setCartQuantity(cartQuantity + 1)               
                     }}
                     className="
                         text-subTitle
