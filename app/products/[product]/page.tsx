@@ -5,7 +5,6 @@ import Recommendations from "./Recommendations";
 import Categories from "@/app/Components/Categories";
 import AudioGear from "@/app/Components/AudioGear";
 import Back from "./Back";
-import { ProductProps } from "@/app/types/Types";
 import getData from "@/app/Helper/getData";
 
 const products = [

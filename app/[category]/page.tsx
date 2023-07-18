@@ -2,7 +2,6 @@ import getData from "../Helper/getData";
 import ProductContainer from "../Components/ProductContainer";
 import Categories from "../Components/Categories";
 import AudioGear from "../Components/AudioGear";
-import { ProductProps } from "../types/Types";
 
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
