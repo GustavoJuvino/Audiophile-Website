@@ -55,6 +55,7 @@ const CartProduct: React.FC<LocalProductProps> = ({
 
             <div className="w-[96px] h-[32px] bg-seashell flex justify-between items-center px-[11px]">
                 <span
+                    onClick={() => setCartQuantity(cartQuantity >=1 ? cartQuantity - 1 : 0)}
                     className="
                         text-subTitle
                         opacity-25
@@ -72,9 +73,7 @@ const CartProduct: React.FC<LocalProductProps> = ({
                 </p>
 
                 <span
-                    onClick={() => { 
-                        setCartQuantity(cartQuantity + 1)               
-                    }}
+                    onClick={() => setCartQuantity(cartQuantity + 1)}
                     className="
                         text-subTitle
                         opacity-25

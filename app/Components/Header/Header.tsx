@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation'
-import useClickOutside from "@/app/hooks/useClickOutside";
-import { useGlobalContext } from "@/app/Context/store";
-import { CartIcon, Logo } from "@/public/assets/svgs";
 import Link from "next/link";
 import MobileMenu from "../MobileMenu";
 import CartMenu from "../Cart/CartMenu";
 import styles from "./Mobile.module.css";
+import { usePathname } from 'next/navigation'
+import { CartIcon, Logo } from "@/public/assets/svgs";
+import { useGlobalContext } from "@/app/Context/store";
+import useClickOutside from "@/app/hooks/useClickOutside";
 
 export const headerItems = [
     "home",
@@ -61,6 +61,7 @@ const Header = () => {
             <Link href="/" className="h-[20px]">
                 <Logo className="cursor-pointer" />
             </Link>
+            
             <ul className="w-[430px] flex justify-between max-md:hidden">
                 {headerItems.map((item) => 
                     <li key={item} >
