@@ -7,6 +7,7 @@ import { useGlobalContext } from "@/app/Context/store";
 import Button from "../Button";
 import { useLocalStorage } from "usehooks-ts";
 import { usePathname } from "next/navigation";
+import CartProduct from "./CartProduct";
 
 interface CartProps { activeCart: boolean };
 
@@ -139,75 +140,12 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         )}
                     </div>
 
-                    {productKeys.map((key) => getLocalStorage(key) && (
-                        <div
-                            key={key}
-                            className="
-                                flex
-                                max-small-mobile:flex-col
-                                small-mobile:justify-between
-                                small-mobile:items-center
-                                max-small-mobile:gap-4
-                                mt-8
-                            "
-                        >
-                            <div className="flex">
-                                <Image
-                                    width={64}
-                                    height={64}
-                                    alt="Product-Image"
-                                    src="/assets/cart/image-xx99-mark-two-headphones.jpg"
-                                    className="rounded-lg"
-                                />
-                                <div className="ml-4">
-                                    <h2 className="uppercase font-bold">
-                                        {getLocalStorage(key).name}
-                                    </h2>
-                                    <h3 className="font-bold opacity-50">
-                                        {`$ ${getLocalStorage(key)?.price}`}
-                                    </h3>
-                                </div>
-                            </div>
-
-                            <div className="w-[96px] h-[32px] bg-seashell flex justify-between items-center px-[11px]">
-                                <span
-                                    className="
-                                        text-subTitle
-                                        opacity-25
-                                        cursor-pointer
-                                        duration-300
-                                        hover:text-raw-sienna
-                                        hover:opacity-100
-                                    "
-                                >
-                                    -
-                                </span>
-
-                                <p className="text-subTitle">
-                                    {getLocalStorage(key).quantity}
-                                </p>
-
-                                <span
-                                    onClick={() => {
-                                        if(count > 0 ) {
-                                            setCount((count) => count + 1)
-                                            test(getLocalStorage(key))
-                                        }
-                                        
-                                    }}
-                                    className="
-                                        text-subTitle
-                                        opacity-25
-                                        cursor-pointer
-                                        duration-300
-                                        hover:text-raw-sienna
-                                        hover:opacity-100
-                                    "
-                                >
-                                    +
-                                </span>
-                            </div>
-                        </div>
+                    {!empty && productKeys.map((key) => getLocalStorage(key) && (
+                        <CartProduct 
+                            name={getLocalStorage(key).name}
+                            price={getLocalStorage(key).price}
+                            quantity={getLocalStorage(key).quantity}
+                        />
                     ))}
 
                     {empty && (

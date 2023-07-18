@@ -15,15 +15,14 @@ interface LocalProducts {
 
 const CartButton = () => {
   const pathname = usePathname();
-  const [count, setCount] = useState(0);
-  const [localData, setLocalData] = useState({
-    name: "",
-    slug: "",
-    price: 0,
-    quantity: 0
-  });
   const { getLocalStorage } = useGetLocalStorage(); 
-  const { setQuantityCart, setEmpty } = useGlobalContext();
+  const [count, setCount] = useState(0);
+  const { 
+    localData,
+    setLocalData,
+    setQuantityCart,
+    setEmpty
+  } = useGlobalContext();
 
   // Local Storage
   const [storage, setStorage] = useLocalStorage(localData.name, localData);
@@ -42,7 +41,7 @@ const CartButton = () => {
         }),
       )       
     }
-
+    
     fetchProducts();
 
   }, [count]);

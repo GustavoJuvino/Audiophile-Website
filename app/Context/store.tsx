@@ -2,7 +2,14 @@
 
 import { createContext, useContext, Dispatch, SetStateAction, useState } from "react";
 
+interface LocalDataProps {
+
+}
+
 interface ContextProps {
+    localData: LocalProductProps;
+    setLocalData: Dispatch<SetStateAction<LocalProductProps>>;
+    
     quantityCart: number;
     setQuantityCart: Dispatch<SetStateAction<number>>
     
@@ -11,18 +18,34 @@ interface ContextProps {
 }
 
 const GlobalContext = createContext<ContextProps>({
+    localData: {
+        name: "",
+        price: 0,
+        quantity: 0
+    },
+    setLocalData: () => {},
+
     quantityCart: 0,
     setQuantityCart: (): number => 0,
+    
     empty: true,
     setEmpty: (): boolean => true
 });
 
 export const GlobalContextProvider = ({ children }) => {
+    const [localData, setLocalData] = useState<LocalProductProps>({
+        name: "",
+        slug: "",
+        price: 0,
+        quantity: 0
+    });
     const [quantityCart, setQuantityCart] = useState(0);
     const [empty, setEmpty] = useState(true);
 
     return (
         <GlobalContext.Provider value={{ 
+                localData,
+                setLocalData,
                 quantityCart,
                 setQuantityCart,
                 empty,
