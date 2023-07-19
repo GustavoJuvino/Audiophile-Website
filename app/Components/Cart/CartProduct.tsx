@@ -5,29 +5,46 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/Context/store";
 import { useLocalStorage } from "usehooks-ts";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
+import { productKeys } from "./CartMenu";
 
-let newLocalData: LocalProductProps & {quantity: number}
+let newLocalData: LocalProductProps & { quantity: number };
 
 const CartProduct: React.FC<LocalProductProps> = ({
     name,
+    slug,
     price,
     quantity,
 }) => {
     const [cartQuantity, setCartQuantity] = useState<number>(quantity);
     const { getLocalStorage } = useGetLocalStorage();
-    const { setEmpty } = useGlobalContext();
+    const { setTotal, setEmpty } = useGlobalContext();
 
     const [storage, setStorage] = useLocalStorage(name, newLocalData);
 
     useEffect(() => {
-        if(cartQuantity > 0) {
-            newLocalData = Object.assign(getLocalStorage(name), {quantity: cartQuantity})
+        if (cartQuantity > 0) {
+            newLocalData = Object.assign(getLocalStorage(name), { quantity: cartQuantity })
             setStorage(newLocalData);
         } else {
             localStorage.removeItem(name);
             setEmpty(true);
         }
     }, [cartQuantity])
+
+    let result: number[] = [];
+    productKeys.map((key) => {
+        if (getLocalStorage(key)) {
+            result.push(getLocalStorage(key).price * getLocalStorage(key).quantity)
+        }
+    })
+
+    useEffect(() => {
+        setTotal(
+            result?.reduce(function (accumulator, currentValue) {
+                return accumulator + currentValue;
+            }, 0)
+        )
+    }, [result]);
 
     if (cartQuantity) {
         return (
@@ -45,7 +62,7 @@ const CartProduct: React.FC<LocalProductProps> = ({
                         width={64}
                         height={64}
                         alt="Product-Image"
-                        src="/assets/cart/image-xx99-mark-two-headphones.jpg"
+                        src={`/assets/cart/image-${slug}.jpg`}
                         className="rounded-lg"
                     />
                     <div className="ml-4">
@@ -53,14 +70,14 @@ const CartProduct: React.FC<LocalProductProps> = ({
                             {name}
                         </h2>
                         <h3 className="font-bold opacity-50">
-                            {`$ ${price}`}
+                            {`$ ${price.toLocaleString("en-US")}`}
                         </h3>
                     </div>
                 </div>
-    
+
                 <div className="w-[96px] h-[32px] bg-seashell flex justify-between items-center px-[11px]">
                     <span
-                        onClick={() => setCartQuantity(cartQuantity >=1 ? cartQuantity - 1 : 0)}
+                        onClick={() => setCartQuantity(cartQuantity >= 1 ? cartQuantity - 1 : 0)}
                         className="
                             text-subTitle
                             opacity-25
@@ -72,11 +89,11 @@ const CartProduct: React.FC<LocalProductProps> = ({
                     >
                         -
                     </span>
-    
+
                     <p className="text-subTitle">
                         {cartQuantity}
                     </p>
-    
+
                     <span
                         onClick={() => {
                             setCartQuantity(cartQuantity + 1)

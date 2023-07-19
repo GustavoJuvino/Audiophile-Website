@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
-import Button from "../Button";
 import CartProduct from "./CartProduct";
+import CartCheckout from "./CartCheckout";
 import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
@@ -97,6 +97,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         <CartProduct 
                             key={getLocalStorage(key).slug}
                             name={getLocalStorage(key).name}
+                            slug={getLocalStorage(key).slug}
                             price={getLocalStorage(key).price}
                             quantity={getLocalStorage(key).quantity}
                         />
@@ -111,23 +112,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                     )}
 
                     {!empty && (
-                        <div>
-                            <div className="flex justify-between mt-8 mb-6">
-                                <h2 className="uppercase opacity-50">
-                                    Total
-                                </h2>
-                                <span className="text-lg">
-                                    $ 5,396
-                                </span>
-                            </div>
-
-                            <div className="mb-8">
-                                <Button
-                                    type={5}
-                                    value="checkout"
-                                />
-                            </div>
-                        </div>
+                        <CartCheckout />
                     )}
                 </section>
             </section>

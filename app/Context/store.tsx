@@ -8,7 +8,10 @@ interface ContextProps {
 
     quantityCart: number;
     setQuantityCart: Dispatch<SetStateAction<number>>
-    
+
+    total: number;
+    setTotal: Dispatch<SetStateAction<number>>;
+
     empty: boolean;
     setEmpty: Dispatch<SetStateAction<boolean>>
 }
@@ -23,6 +26,9 @@ const GlobalContext = createContext<ContextProps>({
 
     quantityCart: 0,
     setQuantityCart: (): number => 0,
+
+    total: 0,
+    setTotal: (): number => 0,
     
     empty: true,
     setEmpty: (): boolean => true
@@ -37,6 +43,7 @@ export const GlobalContextProvider = ({ children }) => {
         quantity: 0
     });
     const [quantityCart, setQuantityCart] = useState(0);
+    const [total, setTotal] = useState(0)
     const [empty, setEmpty] = useState(true);
 
     return (
@@ -45,6 +52,8 @@ export const GlobalContextProvider = ({ children }) => {
                 setLocalData,
                 quantityCart,
                 setQuantityCart,
+                total,
+                setTotal,
                 empty,
                 setEmpty
             }}
