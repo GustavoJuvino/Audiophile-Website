@@ -20,14 +20,14 @@ const CartProduct: React.FC<LocalProductProps> = ({
     const [storage, setStorage] = useLocalStorage(name, newLocalData);
 
     useEffect(() => {
-        newLocalData = Object.assign(getLocalStorage(name), {quantity: cartQuantity})
-        setStorage(newLocalData);
-
-        // else {
-        //     localStorage.removeItem(name);
-        //     setEmpty(true);
-        // }
-    }, [cartQuantity, setCartQuantity])
+        if(cartQuantity > 0) {
+            newLocalData = Object.assign(getLocalStorage(name), {quantity: cartQuantity})
+            setStorage(newLocalData);
+        } else {
+            localStorage.removeItem(name);
+            setEmpty(true);
+        }
+    }, [cartQuantity])
 
     if (cartQuantity) {
         return (
