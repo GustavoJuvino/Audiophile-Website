@@ -28,6 +28,7 @@ const GlobalContext = createContext<ContextProps>({
     setEmpty: (): boolean => true
 });
 
+// @ts-ignore
 export const GlobalContextProvider = ({ children }) => {
     const [localData, setLocalData] = useState<LocalProductProps>({
         name: "",

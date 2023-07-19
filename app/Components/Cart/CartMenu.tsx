@@ -93,8 +93,9 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         )}
                     </div>
 
-                    {!empty && productKeys.map((key) => getLocalStorage(key) && (
+                    {productKeys.map((key) => getLocalStorage(key) && (
                         <CartProduct 
+                            key={getLocalStorage(key).slug}
                             name={getLocalStorage(key).name}
                             price={getLocalStorage(key).price}
                             quantity={getLocalStorage(key).quantity}
