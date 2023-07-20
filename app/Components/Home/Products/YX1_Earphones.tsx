@@ -1,8 +1,13 @@
+"use client";
+
 import React from 'react';
 import Image from "next/image";
 import ProductButton from "../../Buttons/ProductButton";
+import { useRouter } from "next/navigation";
 
 const YX1_Earphones = () => {
+  const router = useRouter();
+
   return (
     <div className="
             w-full
@@ -39,7 +44,10 @@ const YX1_Earphones = () => {
             <h1 className="text-2xl mb-8">
                 YX1 EARPHONES
             </h1>
-            <ProductButton value="see product" />
+            <ProductButton 
+                click={() => router.push("/products/yx1-earphones")}
+                value="see product"
+            />
         </div>
     </div>
   )

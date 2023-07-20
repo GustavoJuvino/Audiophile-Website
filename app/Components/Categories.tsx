@@ -66,7 +66,7 @@ const Categories = () => {
               {item.product}
             </h3>
             <ShopButton 
-              click={() => router.push(item.product)}
+              click={() => router.push(`/${item.product}`)}
               value="shop"
             />
           </div>

@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import React from 'react';
 import CartButton from "./Cart/CartButton";
 import DefaultButton from "./Buttons/DefaultButton";
+import { useRouter } from "next/navigation";
 
-export interface ProductContainerProps {
+interface ProductContainerProps {
     newProduct?: boolean;
     name: string;
     description: string;
@@ -12,6 +15,7 @@ export interface ProductContainerProps {
     srcMobile: string;
     reverse?: boolean;
     cart?: boolean;
+    slug: string;
 }
 
 const ProductContainer: React.FC<ProductContainerProps> = ({
@@ -22,8 +26,11 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
     src,
     srcMobile,
     reverse,
-    cart
+    cart,
+    slug
 }) => {
+  const router = useRouter();
+
   return (
     <div className={`
             w-full
@@ -95,7 +102,11 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
 
                 {cart ? (
                     <CartButton />
-                ) : <DefaultButton value="see product"/> }
+                ) : <DefaultButton
+                        click={() => router.push(`products/${slug}`)}
+                        value="see product"
+                    /> 
+                }
             </div>
             
         </div>

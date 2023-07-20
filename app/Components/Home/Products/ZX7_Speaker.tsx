@@ -1,8 +1,13 @@
+"use client";
+
 import React from 'react';
 import Image from "next/image";
 import ProductButton from "../../Buttons/ProductButton";
+import { useRouter } from "next/navigation";
 
 const ZX7_Speaker = () => {
+  const router = useRouter();
+
   return (
     <div className="
         w-full
@@ -33,7 +38,10 @@ const ZX7_Speaker = () => {
         <h1 className="text-2xl mb-8">
           ZX7 SPEAKER
         </h1>
-        <ProductButton value="see product"/>
+        <ProductButton 
+          click={() => router.push("/products/zx7-speaker")}
+          value="see product"
+        />
       </div>
     </div>
   )

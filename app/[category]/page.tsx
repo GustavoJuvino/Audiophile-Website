@@ -47,6 +47,7 @@ export default async function page({params}: {params: {category: string}}) {
                                 src={product.image.desktop}
                                 srcMobile={product.image.mobile}
                                 reverse={product?.reverse}
+                                slug={product.slug}
                             />
                         ))}
                     </div>

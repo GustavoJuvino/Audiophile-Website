@@ -71,6 +71,7 @@ export default async function page({ params }: { params: { product: string } }) 
                                     cart={true}
                                     src={item.image.desktop}
                                     srcMobile={item.image.mobile}
+                                    slug={item.slug}
                                 />
 
                                 <Features

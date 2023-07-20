@@ -17,7 +17,8 @@ interface ProductProps {
     category: string
     image: ImageProps,
     description: string,
-    reverse?: boolean
+    reverse: boolean
+    slug: string;
 }
 
 interface LocalProductProps {

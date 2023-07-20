@@ -1,9 +1,14 @@
-import React from 'react'
-import Image from "next/image"
-import { PatternCircles } from "@/public/assets/svgs"
-import ProductButton from "../../Buttons/ProductButton"
+"use client";
+
+import React from 'react';
+import Image from "next/image";
+import ProductButton from "../../Buttons/ProductButton";
+import { PatternCircles } from "@/public/assets/svgs";
+import { useRouter } from "next/navigation";
 
 const ZX9_Speaker = () => {
+  const router = useRouter();
+
   return (
     <div className="
         w-full
@@ -71,6 +76,7 @@ const ZX9_Speaker = () => {
           sound.
         </p>
         <ProductButton
+          click={() => router.push("/products/zx9-speaker")}
           type={2}
           value="see product"
         />
