@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Image from "next/image";
-import Button from "../Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import { useRouter } from "next/navigation";
 
 const Main = () => {
@@ -49,10 +49,9 @@ const Main = () => {
                 build quality made for the passionate music
                 enthusiast.
                 </p>
-                <Button 
+                <DefaultButton 
                     click={() => router.push("/products/xx99-mark-two-headphones")}
-                    type={1}
-                    value="see product" 
+                    value="see product"
                 />
             </div>
 

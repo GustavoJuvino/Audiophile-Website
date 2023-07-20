@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import Button from "../../Button";
+import ProductButton from "../../Buttons/ProductButton";
 
 const ZX7_Speaker = () => {
   return (
@@ -33,7 +33,7 @@ const ZX7_Speaker = () => {
         <h1 className="text-2xl mb-8">
           ZX7 SPEAKER
         </h1>
-        <Button type={2} value="see product"/>
+        <ProductButton value="see product"/>
       </div>
     </div>
   )

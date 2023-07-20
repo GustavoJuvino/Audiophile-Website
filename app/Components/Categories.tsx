@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from "next/image";
-import Button from "./Button";
 import { useRouter } from "next/navigation";
+import ShopButton from "./Buttons/ShopButton";
 
 const CategoriesItems = [
   {
@@ -65,11 +65,10 @@ const Categories = () => {
             <h3 className="text-lg uppercase">
               {item.product}
             </h3>
-            <Button
+            <ShopButton 
               click={() => router.push(item.product)}
-              type={4}
-              value="shop" 
-              />
+              value="shop"
+            />
           </div>
         </div>
       )}

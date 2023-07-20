@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image"
-import Button from "../../Button"
 import { PatternCircles } from "@/public/assets/svgs"
+import ProductButton from "../../Buttons/ProductButton"
 
 const ZX9_Speaker = () => {
   return (
@@ -70,8 +70,8 @@ const ZX9_Speaker = () => {
           phenomenally built to deliver truly remarkable <br className="max-small-mobile:hidden" />
           sound.
         </p>
-        <Button
-          type={3}
+        <ProductButton
+          type={2}
           value="see product"
         />
       </div>

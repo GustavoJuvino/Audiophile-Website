@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
-import Button from "../Button";
 import { useGlobalContext } from "@/app/Context/store";
+import LargeButton from "../Buttons/LargeButton";
 
 const CartCheckout = () => {
     const { total } = useGlobalContext();
@@ -18,10 +18,7 @@ const CartCheckout = () => {
             </div>
 
             <div className="mb-8">
-                <Button
-                    type={5}
-                    value="checkout"
-                />
+                <LargeButton value="checkout"/>
             </div>
         </div>
     )

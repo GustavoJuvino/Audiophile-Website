@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from 'react';
-import Button from "./Button";
 import CartButton from "./Cart/CartButton";
+import DefaultButton from "./Buttons/DefaultButton";
 
 export interface ProductContainerProps {
     newProduct?: boolean;
@@ -95,7 +95,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
 
                 {cart ? (
                     <CartButton />
-                ) : <Button type={1} value="see product" /> }
+                ) : <DefaultButton value="see product"/> }
             </div>
             
         </div>

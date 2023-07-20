@@ -2,14 +2,13 @@
 
 import React from 'react';
 import Image from "next/image";
-import Button from "@/app/Components/Button";
+import DefaultButton from "@/app/Components/Buttons/DefaultButton";
 import { useRouter } from "next/navigation";
 
 interface RecommendationsProps {
     product: string;
     slug: string;
 }
-
 
 const Recommendations: React.FC<RecommendationsProps> = ({
     product,
@@ -29,7 +28,10 @@ const Recommendations: React.FC<RecommendationsProps> = ({
         <h1 className="text-xl mt-10 mb-8 uppercase">
             {product}
         </h1>
-        <Button click={() => router.push(slug)} type={1} value="see product" />
+        <DefaultButton 
+            click={() => router.push(slug)}
+            value="see product"
+        />
      </div>
   )
 }

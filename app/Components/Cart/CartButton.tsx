@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Button from "../Button";
 import { productKeys } from "./CartMenu";
 import { useLocalStorage } from "usehooks-ts";
 import { usePathname } from 'next/navigation';
 import { useGlobalContext } from "@/app/Context/store";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
+import DefaultButton from "../Buttons/DefaultButton";
 
 interface LocalProducts {
   key: string;
@@ -96,7 +96,7 @@ const CartButton = () => {
         </span>
       </div>
 
-      <Button 
+      <DefaultButton 
         click={() => {
           if(count > 0) {
             setEmpty(false)
@@ -104,7 +104,6 @@ const CartButton = () => {
             updateCart()
           }
         }}
-        type={1}
         value="add to cart" 
       />
     </div>

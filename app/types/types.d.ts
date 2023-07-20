@@ -1,3 +1,10 @@
+
+interface ButtonProps {
+    value: string;
+    click?: () => void;
+    type?: number;
+}
+
 type ImageProps = {
     desktop: string,
     mobile: string,
