@@ -56,3 +56,27 @@ span, #main-product-image {
   -o-user-select: none;
   user-select: none;
 }
+
+
+input[type="radio"] {
+  appearance: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #cfcfcf;
+  border-radius: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 300ms;
+}
+
+.selected::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: #D87D4A;
+}
