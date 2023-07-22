@@ -2,11 +2,22 @@
 
 import React, { useState } from 'react';
 import { Form } from "./Form";
+import { CheckoutDetails } from "./CheckoutDetails";
 
 let paymentMethods = [
     {
         value: "e-Money",
-        name: "e-money"
+        name: "e-money",
+        inputsMoney: [
+            {
+                label: "e-Money Number",
+                value: 238521993
+            },
+            {
+                label: "e-Money PIN",
+                value: 6891
+            }
+        ]
     },
     {
         value: "Cash on Delivery",
@@ -26,19 +37,10 @@ const Checkout = () => {
                 Checkout
             </h1>
 
-            <section className="mt-10">
-                <legend className="
-                            font-bold
-                            mb-4
-                            uppercase
-                            tracking-[0.93px]
-                            text-raw-sienna
-                        "
-                >
-                    Billing Details
-                </legend>
+            <CheckoutDetails.Section>
+                <CheckoutDetails.Legend> Billing Details </CheckoutDetails.Legend>
 
-                <div className="flex gap-x-4 gap-y-6 flex-wrap">
+                <CheckoutDetails.Wrapper>
                     <Form.Field>
                         <Form.Label htmlFor="name">
                             Name
@@ -74,22 +76,13 @@ const Checkout = () => {
                             placeholder="+1 202-555-0136"
                         />
                     </Form.Field>
-                </div>
-            </section>
+                </CheckoutDetails.Wrapper>
+            </CheckoutDetails.Section>
 
-            <section className="mt-[54px]">
-                <legend className="
-                            font-bold
-                            mb-4
-                            uppercase
-                            tracking-[0.93px]
-                            text-raw-sienna
-                        "
-                >
-                    Shipping Info
-                </legend>
+            <CheckoutDetails.Section className="mt-[54px]">
+                <CheckoutDetails.Legend> Shipping Info </CheckoutDetails.Legend>
 
-                <div className="flex flex-wrap gap-x-4 gap-y-6">
+                <CheckoutDetails.Wrapper>
                     <Form.Field>
                         <Form.Label htmlFor="phone-number">
                             Address
@@ -138,27 +131,17 @@ const Checkout = () => {
                             placeholder="United States"
                         />
                     </Form.Field>
-                </div>
-            </section>
+                </CheckoutDetails.Wrapper>
+            </CheckoutDetails.Section>      
 
-            <section className="mt-[60px]">
-                <legend className="
-                            font-bold
-                            mb-4
-                            uppercase
-                            tracking-[0.93px]
-                            text-raw-sienna
-                        "
-                >
-                    Payment Details
-                </legend>
+
+            <CheckoutDetails.Section className="mt-[60px">
+                <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
                 <div className="w-full flex justify-between">
-                    <h2>
-                        Payment Method
-                    </h2>
+                    <h2> Payment Method </h2>
 
-                    <div className="flex flex-col gap-4">
+                    <CheckoutDetails.Wrapper className="flex-col gap-4 flex-nowrap">
                         {paymentMethods.map((payment) => (
                             <Form.Field className={`
                                     flex
@@ -188,11 +171,28 @@ const Checkout = () => {
                                 </Form.Label>
                             </Form.Field>
                         ))}
-                    </div>
+                    </CheckoutDetails.Wrapper>
                 </div>
-            </section>
+
+                {selectedRadioBtn === "e-money"} {
+                    <div className="flex justify-between mt-6">
+                        {paymentMethods[0].inputsMoney?.map((input) => (
+                            <Form.Field>
+                                <Form.Label htmlFor={input.label.toLocaleLowerCase()}>
+                                    {input.label}
+                                </Form.Label>
+
+                                <Form.Input
+                                    type="number"
+                                    name={input.label.toLocaleLowerCase()}
+                                    placeholder={input.value.toString()}
+                                />
+                            </Form.Field>
+                        ))}
+                    </div>
+                }
+            </CheckoutDetails.Section>
         </form>
     )
 }
-
 export default Checkout;
