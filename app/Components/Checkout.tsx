@@ -3,6 +3,17 @@
 import React, { useState } from 'react';
 import { Form } from "./Form";
 
+let paymentMethods = [
+    {
+        value: "e-Money",
+        name: "e-money"
+    },
+    {
+        value: "Cash on Delivery",
+        name: "cash"
+    }
+];
+
 const Checkout = () => {
     const [selectedRadioBtn, setSelectedRadionBtn] = useState("e-money");
 
@@ -148,62 +159,35 @@ const Checkout = () => {
                     </h2>
 
                     <div className="flex flex-col gap-4">
-                        <Form.Field className={`
-                                flex
-                                items-center
-                                pl-4
-                                pt-[14px]
-                                gap-4
-                                w-[309px]
-                                h-14
-                                border-[1px]
-                                rounded-lg
-                                duration-300
-                                ${selectedRadioBtn === "e-money" && "border-raw-sienna"}
-                            `}
-                        >
-                            <Form.Input
-                                type="radio"
-                                name="e-money"
-                                value="e-money"
-                                checked={isRadioSelected("e-money")}
-                                onChange={handleRadioCheck}
-                                className={selectedRadioBtn === "e-money" ? "selected" : ""}
-                            />
+                        {paymentMethods.map((payment) => (
+                            <Form.Field className={`
+                                    flex
+                                    items-center
+                                    pl-4
+                                    pt-[14px]
+                                    gap-4
+                                    w-[309px]
+                                    h-14
+                                    border-[1px]
+                                    rounded-lg
+                                    duration-300
+                                    ${selectedRadioBtn === payment.name && "border-raw-sienna"}
+                                `}
+                            >
+                                <Form.Input
+                                    type="radio"
+                                    name={payment.name}
+                                    value={payment.name}
+                                    checked={isRadioSelected(payment.name)}
+                                    onChange={handleRadioCheck}
+                                    className={selectedRadioBtn === payment.name ? "selected" : ""}
+                                />
 
-                            <Form.Label htmlFor="e-money">
-                                e-Money
-                            </Form.Label>
-                        </Form.Field>
-
-                        <Form.Field className={`
-                            flex
-                            items-center
-                            pl-4
-                            pt-[14px]
-                            gap-4
-                            w-[309px]
-                            h-14
-                            border-[1px]
-                            rounded-lg
-                            duration-300
-                            ${selectedRadioBtn === "cash" && "border-raw-sienna"}
-                        `}
-                                
-                                
-                        >
-                            <Form.Input
-                                type="radio"
-                                name="cash"
-                                value="cash"
-                                checked={isRadioSelected("cash")}
-                                onChange={handleRadioCheck}
-                                className={selectedRadioBtn === "cash" ? "selected" : ""}
-                            />
-                            <Form.Label htmlFor="cash">
-                                Cash on Delivery
-                            </Form.Label>
-                        </Form.Field>
+                                <Form.Label htmlFor="e-money">
+                                    {payment.value}
+                                </Form.Label>
+                            </Form.Field>
+                        ))}
                     </div>
                 </div>
             </section>
