@@ -19,25 +19,26 @@ export function Input(props: InputProps) {
     }, [])
 
     return (
-        <input
-            id={props.name}
-            onClick={() => setSelected(true)}
-            className={twMerge(`
-                    w-[309px]
-                    h-14
-                    border-[1px]
-                    pl-6
-                    rounded-lg
-                    outline-none
-                    text-black
-                    font-bold
-                    duration-300
-                    ${selected ? "border-raw-sienna" : "border-[#CFCFCF]"}
-                `, props.className)
-            }
-            {...register(props.name)} 
-            {...props}
-            ref={inputRef}
-        />
+        <div ref={inputRef}>
+            <input
+                id={props.name}
+                {...register(props.name)} 
+                onClick={() => setSelected(true)}
+                className={twMerge(`
+                        w-[309px]
+                        h-14
+                        border-[1px]
+                        pl-6
+                        rounded-lg
+                        outline-none
+                        text-black
+                        font-bold
+                        duration-300
+                        ${selected ? "border-raw-sienna" : "border-[#CFCFCF]"}
+                    `, props.className)
+                }
+                {...props}
+            />
+        </div>
     )
 }
