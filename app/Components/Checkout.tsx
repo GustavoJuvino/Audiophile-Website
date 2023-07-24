@@ -6,6 +6,7 @@ import { CheckoutDetails } from "./CheckoutDetails";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, FormProvider } from "react-hook-form";
+import { CashIcon } from "@/public/assets/svgs";
 
 let paymentMethods = [
     {
@@ -14,11 +15,13 @@ let paymentMethods = [
         inputsMoney: [
             {
                 label: "e-Money Number",
-                value: 238521993
+                value: 238521993,
+                name: "moneyNumber",
             },
             {
                 label: "e-Money PIN",
-                value: 6891
+                value: 6891,
+                name: "moneyPIN",
             }
         ]
     },
@@ -32,11 +35,38 @@ const CheckoutFormSchema = z.object({
     name: z.string().nonempty({
         message: "Can't be empty"
     }),
+    email: z.string().nonempty({
+        message: "E-mail is required",
+    }).email({
+        message: "Wrong Format",
+    }),
     phone: z.string().nonempty({
-        message: 'A senha é obrigatória',
-      }).min(8, {
-        message: 'O numéro precisa ter no mínimo 8 caracteres',
-      }),
+        message: "Can't be empty",
+    }).min(8, {
+        message: "At least 8 characters long",
+    }),
+    address: z.string().nonempty({
+        message: "Can't be empty",
+    }),
+    zip_code: z.string().nonempty({
+        message: "Can't be empty",
+    }).min(5, {
+        message: "At least 5 characters long",
+    }),
+    city: z.string().nonempty({
+        message: "Can't be empty",
+    }),
+    country: z.string().nonempty({
+        message: "Can't be empty",
+    }),
+    moneyNumber: z.string().nonempty({
+        message: "Can't be empty",
+    }),
+    moneyPIN: z.string().nonempty({
+        message: "Can't be empty",
+    }).min(4, {
+        message: "At least 4 characters long",
+    }),
 });
 
 type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
@@ -55,8 +85,6 @@ const Checkout = () => {
 
     const isRadioSelected = (value: string): boolean => selectedRadioBtn === value;
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
-
-    if (errors.name) console.log(errors.name)
 
     return (
         <FormProvider {...createCheckoutForm}>
@@ -80,37 +108,39 @@ const Checkout = () => {
 
                     <CheckoutDetails.Wrapper>
                         <Form.Field>
-                            <Form.Label htmlFor="name">
+                            <Form.Label htmlFor="name" error={errors.name} >
                                 Name
                             </Form.Label>
 
                             <Form.Input
                                 type="name"
                                 name="name"
+                                error={errors.name}
                             />
-                            {errors.name && <span>{errors.name.message}</span>}
                         </Form.Field>
 
                         <Form.Field>
-                            <Form.Label htmlFor="email">
+                            <Form.Label htmlFor="email" error={errors.email} >
                                 Email Adress
                             </Form.Label>
 
                             <Form.Input
                                 type="email"
                                 name="email"
+                                error={errors.email}
                                 placeholder="alexei@mail.com"
                             />
                         </Form.Field>
 
                         <Form.Field>
-                            <Form.Label htmlFor="phone-number">
+                            <Form.Label htmlFor="phone" error={errors.phone} >
                                 Phone Number
                             </Form.Label>
 
                             <Form.Input
                                 type="number"
                                 name="phone"
+                                error={errors.phone}
                                 placeholder="+1 202-555-0136"
                             />
                         </Form.Field>
@@ -122,50 +152,54 @@ const Checkout = () => {
 
                     <CheckoutDetails.Wrapper>
                         <Form.Field>
-                            <Form.Label htmlFor="phone-number">
+                            <Form.Label htmlFor="address" error={errors.address} >
                                 Address
                             </Form.Label>
 
                             <Form.Input
                                 type="string"
                                 name="address"
+                                error={errors.address}
                                 placeholder="1137 Williams Avenue"
                                 className="w-[634px]"
                             />
                         </Form.Field>
 
                         <Form.Field>
-                            <Form.Label htmlFor="zip-code">
+                            <Form.Label htmlFor="zip_code" error={errors.zip_code} >
                                 ZIP Code
                             </Form.Label>
 
                             <Form.Input
                                 type="number"
-                                name="zip-code"
+                                name="zip_code"
+                                error={errors.zip_code}
                                 placeholder="10001"
                             />
                         </Form.Field>
 
                         <Form.Field>
-                            <Form.Label htmlFor="city">
+                            <Form.Label htmlFor="city" error={errors.city} >
                                 City
                             </Form.Label>
 
                             <Form.Input
                                 type="string"
                                 name="city"
+                                error={errors.city}
                                 placeholder="New York"
                             />
                         </Form.Field>
 
                         <Form.Field>
-                            <Form.Label htmlFor="country">
+                            <Form.Label htmlFor="country" error={errors.country} >
                                 Country
                             </Form.Label>
 
                             <Form.Input
                                 type="string"
                                 name="country"
+                                error={errors.country}
                                 placeholder="United States"
                             />
                         </Form.Field>
@@ -177,11 +211,13 @@ const Checkout = () => {
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
                     <div className="w-full flex justify-between">
-                        <h2> Payment Method </h2>
+                        <h2 className="font-bold"> Payment Method </h2>
 
                         <CheckoutDetails.Wrapper className="flex-col gap-4 flex-nowrap">
                             {paymentMethods.map((payment) => (
-                                <Form.Field className={`
+                                <Form.Field 
+                                    key={payment.name}
+                                    className={`
                                         flex
                                         items-center
                                         pl-4
@@ -197,14 +233,14 @@ const Checkout = () => {
                                 >
                                     <Form.Input
                                         type="radio"
-                                        name={payment.name}
                                         value={payment.name}
+                                        name={payment.value}
                                         checked={isRadioSelected(payment.name)}
                                         onChange={handleRadioCheck}
                                         className={selectedRadioBtn === payment.name ? "selected" : ""}
                                     />
 
-                                    <Form.Label htmlFor="e-money">
+                                    <Form.Label htmlFor={payment.name}>
                                         {payment.value}
                                     </Form.Label>
                                 </Form.Field>
@@ -212,26 +248,39 @@ const Checkout = () => {
                         </CheckoutDetails.Wrapper>
                     </div>
 
-                    {selectedRadioBtn === "e-money"} {
+                    {selectedRadioBtn === "e-money" && (
                         <div className="flex justify-between mt-6">
                             {paymentMethods[0].inputsMoney?.map((input) => (
-                                <Form.Field>
-                                    <Form.Label htmlFor={input.label.toLocaleLowerCase()}>
+                                <Form.Field key={input.name}>
+                                    <Form.Label
+                                        htmlFor={input.name}
+                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
+                                    >
                                         {input.label}
                                     </Form.Label>
 
                                     <Form.Input
                                         type="number"
-                                        name={input.label.toLocaleLowerCase()}
+                                        name={input.name}
+                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
                                         placeholder={input.value.toString()}
                                     />
                                 </Form.Field>
                             ))}
                         </div>
-                    }
-                </CheckoutDetails.Section>
+                    )}
 
-                <button type="submit" className="mt-4"> CHECKOUT </button>
+                    {selectedRadioBtn === "cash" && (
+                        <div className="w-full h-auto flex gap-x-8 mt-[30px]">
+                            <CashIcon />
+                            <p className="text-[15px] opacity-50 font-medium">
+                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br/>
+                                courier arrives at your residence. Just make sure your address is correct so <br/>
+                                that your order will not be cancelled.
+                            </p>
+                        </div>
+                    )}
+                </CheckoutDetails.Section>
             </form>
         </FormProvider>
     )

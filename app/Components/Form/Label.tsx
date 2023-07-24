@@ -1,10 +1,18 @@
 import { LabelHTMLAttributes } from "react";
+import { FieldError } from "react-hook-form";
 
-export function Label(props: LabelHTMLAttributes<HTMLLabelElement>) {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+    error?: FieldError
+}
+
+
+export function Label({error, ...props}: LabelProps) {
     return (
-        <label 
-            className="text-[14px] font-bold"
-            {...props}
-        />
+        <div>
+            <label 
+                className={`text-[14px] font-bold ${error && "text-red-500"}`}
+                {...props}
+            />
+        </div>
     )
 }
