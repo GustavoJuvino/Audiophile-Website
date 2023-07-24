@@ -17,7 +17,7 @@ export function Input({name, error, ...props}: InputProps) {
 
     useEffect(() => {
         if(inputRef) clickOutside(inputRef, setSelected)
-    }, [])
+    }, []);
 
     return (
         <div className="flex flex-col relative" ref={inputRef}>

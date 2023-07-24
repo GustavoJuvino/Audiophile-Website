@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Form } from "./Form";
-import { CheckoutDetails } from "./CheckoutDetails";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, FormProvider } from "react-hook-form";
+import { Form } from "../Components/Form";
+import { CheckoutDetails } from "../Components/CheckoutDetails";
 import { CashIcon } from "@/public/assets/svgs";
+import { FieldErrors } from "react-hook-form";
 
 let paymentMethods = [
     {
@@ -31,55 +29,21 @@ let paymentMethods = [
     }
 ];
 
-const CheckoutFormSchema = z.object({
-    name: z.string().nonempty({
-        message: "Can't be empty"
-    }),
-    email: z.string().nonempty({
-        message: "E-mail is required",
-    }).email({
-        message: "Wrong Format",
-    }),
-    phone: z.string().nonempty({
-        message: "Can't be empty",
-    }).min(8, {
-        message: "At least 8 characters long",
-    }),
-    address: z.string().nonempty({
-        message: "Can't be empty",
-    }),
-    zip_code: z.string().nonempty({
-        message: "Can't be empty",
-    }).min(5, {
-        message: "At least 5 characters long",
-    }),
-    city: z.string().nonempty({
-        message: "Can't be empty",
-    }),
-    country: z.string().nonempty({
-        message: "Can't be empty",
-    }),
-    moneyNumber: z.string().nonempty({
-        message: "Can't be empty",
-    }),
-    moneyPIN: z.string().nonempty({
-        message: "Can't be empty",
-    }).min(4, {
-        message: "At least 4 characters long",
-    }),
-});
+interface CheckoutProps {
+    errors: FieldErrors<{
+        address: string;
+        name: string;
+        email: string;
+        phone: string;
+        zip_code: string;
+        city: string;
+        country: string;
+        moneyNumber: string;
+        moneyPIN: string;
+    }>;
+}
 
-type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
-
-const Checkout = () => {
-    const createCheckoutForm = useForm<CheckoutFormData>({
-        resolver: zodResolver(CheckoutFormSchema),
-    });
-
-    const {
-        handleSubmit,
-        formState: { errors }
-    } = createCheckoutForm;
+const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
 
     const [selectedRadioBtn, setSelectedRadionBtn] = useState("e-money");
 
@@ -87,18 +51,7 @@ const Checkout = () => {
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
 
     return (
-        <FormProvider {...createCheckoutForm}>
-            <form
-                onSubmit={handleSubmit((data) => console.log(data))}
-                className="
-                        w-[730px]
-                        h-full
-                        bg-white
-                        flex
-                        flex-col
-                        px-12
-                    "
-            >
+            <section className="w-[730px] h-full bg-white flex flex-col px-12">
                 <h1 className="mt-[54px] text-4xl uppercase">
                     Checkout
                 </h1>
@@ -108,7 +61,7 @@ const Checkout = () => {
 
                     <CheckoutDetails.Wrapper>
                         <Form.Field>
-                            <Form.Label htmlFor="name" error={errors.name} >
+                            <Form.Label htmlFor="name" error={errors.name}>
                                 Name
                             </Form.Label>
 
@@ -281,8 +234,7 @@ const Checkout = () => {
                         </div>
                     )}
                 </CheckoutDetails.Section>
-            </form>
-        </FormProvider>
+            </section>
     )
 }
 export default Checkout;
