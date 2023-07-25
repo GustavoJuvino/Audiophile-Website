@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { ButtonProps } from "@/app/types/types";
 
 const ProductButton: React.FC<ButtonProps> = ({
-    type,
+    format,
     value,
     click,
 }) => {
@@ -14,7 +15,7 @@ const ProductButton: React.FC<ButtonProps> = ({
             text-subTitle
             uppercase
             duration-300
-            ${type === 2 ? 
+            ${format === 2 ? 
                 "text-white bg-black hover:bg-[#4C4C4C]"
                 : "border-[1px] border-black text-black hover:bg-black hover:text-white"
             }

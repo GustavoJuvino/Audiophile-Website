@@ -1,8 +1,9 @@
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     value: string;
     click?: () => void;
-    type?: number;
+    format?: number;
 }
 
 type ImageProps = {

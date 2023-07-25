@@ -51,7 +51,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
 
     return (
-            <section className="w-[730px] h-full bg-white flex flex-col px-12">
+            <section className="w-[730px] h-full rounded-lg bg-white flex flex-col px-12">
                 <h1 className="mt-[54px] text-4xl uppercase">
                     Checkout
                 </h1>

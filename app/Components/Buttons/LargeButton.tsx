@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { ButtonProps } from "@/app/types/types";
 
 const LargeButton: React.FC<ButtonProps> = ({
-    value,
-    click
+  value,
+  click
 }) => {
   return (
     <button 

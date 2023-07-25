@@ -63,7 +63,7 @@ const page = () => {
       <FormProvider {...createCheckoutForm}>
         <form 
           onSubmit={handleSubmit((data) => console.log(data))} 
-          className="xl:w-[1110px] h-[1126px] mt-20 mb-12"
+          className="xl:w-[1110px] h-[1126px] mt-20 mb-12 flex justify-between"
          >
           <Checkout errors={errors} />
           <Summary />
