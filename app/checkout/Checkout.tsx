@@ -187,7 +187,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                     <Form.Input
                                         type="radio"
                                         value={payment.name}
-                                        name={payment.value}
+                                        name={payment.name}
                                         checked={isRadioSelected(payment.name)}
                                         onChange={handleRadioCheck}
                                         className={selectedRadioBtn === payment.name ? "selected" : ""}

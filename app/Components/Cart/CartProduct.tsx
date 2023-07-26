@@ -5,19 +5,18 @@ import Image from "next/image";
 import { useGlobalContext } from "@/app/Context/store";
 import { useLocalStorage } from "usehooks-ts";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
-import { productKeys } from "./CartMenu";
 
 let newLocalData: LocalProductProps & { quantity: number };
 
 const CartProduct: React.FC<LocalProductProps> = ({
     name,
     slug,
-    price,
+    price ,
     quantity,
 }) => {
     const [cartQuantity, setCartQuantity] = useState<number>(quantity);
     const { getLocalStorage } = useGetLocalStorage();
-    const { setTotal, setEmpty } = useGlobalContext();
+    const { localProducts, setTotal, setEmpty } = useGlobalContext();
 
     const [storage, setStorage] = useLocalStorage(name, newLocalData);
 
@@ -32,11 +31,7 @@ const CartProduct: React.FC<LocalProductProps> = ({
     }, [cartQuantity])
 
     let result: number[] = [];
-    productKeys.map((key) => {
-        if (getLocalStorage(key)) {
-            result.push(getLocalStorage(key).price * getLocalStorage(key).quantity)
-        }
-    })
+    localProducts?.map((product) => result.push(product.price * product.quantity));
 
     useEffect(() => {
         setTotal(

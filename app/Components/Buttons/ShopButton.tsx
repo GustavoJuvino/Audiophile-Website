@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconRight } from "@/public/assets/svgs";
-import { ButtonProps } from "@/app/types/types";
+import { ButtonProps } from "@/app/types/ButtonType";
 
 const ShopButton: React.FC<ButtonProps> = ({
     value,

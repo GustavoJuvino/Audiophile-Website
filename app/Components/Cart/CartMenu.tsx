@@ -14,14 +14,17 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { data, request } = useFetch();
     const { getLocalStorage } = useGetLocalStorage();
     const {
+        localProducts,
         quantityCart,
         setQuantityCart,
         empty,
         setEmpty,
     } = useGlobalContext();
 
+
     useEffect(() => { request(`/Api/products`) }, []);
     productKeys = data.map((product: any) => product.key);
+
 
     const updateCart = () => {
         let currentProducts: object[] = [];
@@ -93,13 +96,13 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         )}
                     </div>
 
-                    {productKeys.map((key) => getLocalStorage(key) && (
-                        <CartProduct 
-                            key={getLocalStorage(key).slug}
-                            name={getLocalStorage(key).name}
-                            slug={getLocalStorage(key).slug}
-                            price={getLocalStorage(key).price}
-                            quantity={getLocalStorage(key).quantity}
+                    {localProducts.map((product) => (
+                        <CartProduct
+                            key={product.slug}
+                            name={product.name}
+                            slug={product.slug}
+                            price={product.price}
+                            quantity={product.quantity}
                         />
                     ))}
 

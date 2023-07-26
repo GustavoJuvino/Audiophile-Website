@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from "@/app/types/types";
+import { ButtonProps } from "@/app/types/ButtonType";
 
 const DefaultButton: React.FC<ButtonProps> = ({
   value,

@@ -16,11 +16,19 @@ interface LocalProducts {
 const CartButton = () => {
   const pathname = usePathname();
   const { getLocalStorage } = useGetLocalStorage(); 
+  const [localData, setLocalData] = useState({
+    name: "",
+    slug: "",
+    price: 0,
+    quantity: 0
+  });
   const [count, setCount] = useState(0);
   const { 
-    localData,
-    setLocalData,
+    localProducts,
+    setLocalProducts,
+    quantityCart,
     setQuantityCart,
+    empty,
     setEmpty
   } = useGlobalContext();
 
@@ -46,15 +54,9 @@ const CartButton = () => {
 
   }, [count]);
 
-  const updateCart = () => {
-    let arr: object[] = [];
-    productKeys.map((key) => {
-      if(getLocalStorage(key)) {
-        arr.push(getLocalStorage(key));
-        setQuantityCart(arr.length)
-      }
-    });
-  };
+  useEffect(() => {
+    setLocalProducts(productKeys.map((key) => getLocalStorage(key)).filter(e => e !== undefined));
+  }, [storage, quantityCart, empty])
 
   return (
     <div className="small-mobile:w-[296px] h-auto flex justify-between">
@@ -100,8 +102,8 @@ const CartButton = () => {
         click={() => {
           if(count > 0) {
             setEmpty(false)
-            setStorage(localData && localData)
-            updateCart()
+            setStorage(localData)
+            setQuantityCart(localProducts.length)
           }
         }}
         value="add to cart" 
