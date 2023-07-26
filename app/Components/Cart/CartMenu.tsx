@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import CartProduct from "./CartProduct";
 import CartCheckout from "./CartCheckout";
 import useFetch from "@/app/hooks/useFetch";
@@ -9,12 +9,15 @@ import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
 interface CartProps { activeCart: boolean };
 
 export let productKeys: string[] = [];
+export let filteredArrays: LocalProductProps[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { data, request } = useFetch();
     const { getLocalStorage } = useGetLocalStorage();
     const {
+        total,
         localProducts,
+        setLocalProducts,
         quantityCart,
         setQuantityCart,
         empty,
@@ -25,6 +28,9 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
     useEffect(() => { request(`/Api/products`) }, []);
     productKeys = data.map((product: any) => product.key);
 
+    useEffect(() => {
+        setLocalProducts(productKeys.map((key) => getLocalStorage(key)).filter(e => e !== undefined));
+    }, [quantityCart, total])
 
     const updateCart = () => {
         let currentProducts: object[] = [];
@@ -46,7 +52,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         })
     }
 
-    useEffect(() => { updateCart() }, [updateCart, empty]);
+    useEffect(() => { updateCart() }, [updateCart, empty, quantityCart]);
 
     if (activeCart) {
         return (
@@ -96,7 +102,16 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                         )}
                     </div>
 
-                    {localProducts.map((product) => (
+                    {productKeys.map((key) => getLocalStorage(key) && (
+                        <CartProduct 
+                            key={getLocalStorage(key).slug}
+                            name={getLocalStorage(key).name}
+                            slug={getLocalStorage(key).slug}
+                            price={getLocalStorage(key).price}
+                            quantity={getLocalStorage(key).quantity}
+                        />
+                    ))}
+                    {/* {localProducts.map((product) => (
                         <CartProduct
                             key={product.slug}
                             name={product.name}
@@ -104,7 +119,7 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                             price={product.price}
                             quantity={product.quantity}
                         />
-                    ))}
+                    ))} */}
 
                     {empty && (
                         <div className="mt-8 w-full h-full flex justify-center items-center text-center">

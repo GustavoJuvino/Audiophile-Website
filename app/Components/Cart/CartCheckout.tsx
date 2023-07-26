@@ -1,10 +1,12 @@
 "use client";
 import React from 'react';
+import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/app/Context/store";
 import LargeButton from "../Buttons/LargeButton";
 
 const CartCheckout = () => {
     const { total } = useGlobalContext();
+    const router = useRouter();
     
     return (
         <div>
@@ -18,7 +20,7 @@ const CartCheckout = () => {
             </div>
 
             <div className="mb-8">
-                <LargeButton value="checkout"/>
+                <LargeButton click={() => router.push("/checkout")} value="checkout"/>
             </div>
         </div>
     )
