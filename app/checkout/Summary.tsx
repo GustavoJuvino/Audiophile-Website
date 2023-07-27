@@ -23,59 +23,61 @@ const Summary = () => {
 
 
   return (
-    <section className="w-[350px] h-auto rounded-lg bg-white px-[33px]">
-      <h1 className="text-lg uppercase mt-8">
-        summary
-      </h1>
-      <section className="mt-8 flex flex-col gap-y-6">
-        {localProducts.map((product) => (
-          <div
-            key={product.slug}
-            className="w-full h-16 flex justify-between items-center"
-          >
-            <div className="flex items-center gap-x-4">
-              <Image
-                width={64}
-                height={64}
-                alt="Product-Icon"
-                src={`/assets/cart/image-${product.slug}.jpg`}
-                className="w-auto h-auto rounded-lg"
-              />
-              <div>
-                <h2 className="font-bold">
-                  {product.name}
-                </h2>
-                <span className="text-sm font-bold opacity-50">
-                  {`$ ${product.price.toLocaleString("en-US")}`}
-                </span>
+    <section className="w-[350px] h-full rounded-lg bg-gray-800">
+      <div className="px-[33px] pb-8">
+        <h1 className="text-lg uppercase mt-8">
+          summary
+        </h1>
+        <section className="mt-8 flex flex-col gap-y-6">
+          {localProducts.map((product) => (
+            <div
+              key={product.slug}
+              className="w-full h-16 flex justify-between items-center"
+            >
+              <div className="flex items-center gap-x-4">
+                <Image
+                  width={64}
+                  height={64}
+                  alt="Product-Icon"
+                  src={`/assets/cart/image-${product.slug}.jpg`}
+                  className="w-auto h-auto rounded-lg"
+                />
+                <div>
+                  <h2 className="font-bold">
+                    {product.name}
+                  </h2>
+                  <span className="text-sm font-bold opacity-50">
+                    {`$ ${product.price.toLocaleString("en-US")}`}
+                  </span>
+                </div>
               </div>
+
+              <span className="font-bold opacity-50"> {`x${product.quantity}`} </span>
             </div>
+          ))}
+        </section>
 
-            <span className="font-bold opacity-50"> {`x${product.quantity}`} </span>
+        <div className="flex justify-between my-8">
+          <div className="font-medium opacity-50 uppercase flex flex-col gap-y-2">
+            <h2>total</h2>
+            <h2>shipping</h2>
+            <h2>vat {"(included)"}</h2>
           </div>
-        ))}
-      </section>
 
-      <div className="flex justify-between my-8">
-        <div className="font-medium opacity-50 uppercase flex flex-col gap-y-2">
-          <h2>total</h2>
-          <h2>shipping</h2>
-          <h2>vat {"(included)"}</h2>
+          <div className="flex flex-col items-end gap-y-2 text-lg">
+            <span>{`$ ${total ? total.toLocaleString("en-US") : 0}`}</span>
+            <span>$ 50</span>
+            <span>$ 1,079</span>
+          </div>
         </div>
 
-        <div className="flex flex-col items-end gap-y-2 text-lg">
-          <span>{`$ ${total ? total.toLocaleString("en-US") : 0}`}</span>
-          <span>$ 50</span>
-          <span>$ 1,079</span>
-        </div>
+        <div></div>
+
+        <LargeButton
+          value="continue & pay"
+          type="submit"
+        />
       </div>
-
-      <div></div>
-
-      <LargeButton
-        value="continue & pay"
-        type="submit"
-      />
     </section>
   )
 }

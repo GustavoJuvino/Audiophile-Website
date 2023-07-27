@@ -48,7 +48,6 @@ ul, li{
   }
 }
 
-
 span, #main-product-image {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -57,12 +56,11 @@ span, #main-product-image {
   user-select: none;
 }
 
-
 input[type="radio"] {
   appearance: none;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 5px;
+  height: 5px;
   border: 1px solid #cfcfcf;
   border-radius: 100%;
   padding: 12px;
@@ -75,8 +73,13 @@ input[type="radio"] {
 .selected::before {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 100%;
   background-color: #D87D4A;
+}
+
+/* Chrome/Opera/Safari/Edge */
+input::-webkit-input-placeholder {
+	padding-left: 24px;
 }

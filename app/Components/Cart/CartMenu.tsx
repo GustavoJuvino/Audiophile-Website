@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import CartProduct from "./CartProduct";
 import CartCheckout from "./CartCheckout";
 import useFetch from "@/app/hooks/useFetch";

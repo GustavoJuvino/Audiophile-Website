@@ -51,7 +51,8 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
 
     return (
-            <section className="w-[730px] h-full rounded-lg bg-white flex flex-col px-12">
+        <main className="bg-gray-800 xl:w-[730px] w-[689px] h-full rounded-lg">
+            <section className="px-12 pb-12">
                 <h1 className="mt-[54px] text-4xl uppercase">
                     Checkout
                 </h1>
@@ -69,6 +70,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                 type="name"
                                 name="name"
                                 error={errors.name}
+                                placeholder="Alexei Ward"
                             />
                         </Form.Field>
 
@@ -84,40 +86,40 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                 placeholder="alexei@mail.com"
                             />
                         </Form.Field>
-
-                        <Form.Field>
-                            <Form.Label htmlFor="phone" error={errors.phone} >
-                                Phone Number
-                            </Form.Label>
-
-                            <Form.Input
-                                type="number"
-                                name="phone"
-                                error={errors.phone}
-                                placeholder="+1 202-555-0136"
-                            />
-                        </Form.Field>
                     </CheckoutDetails.Wrapper>
+
+                    <Form.Field className="mt-6">
+                        <Form.Label htmlFor="phone" error={errors.phone} >
+                            Phone Number
+                        </Form.Label>
+
+                        <Form.Input
+                            type="number"
+                            name="phone"
+                            error={errors.phone}
+                            placeholder="+1 202-555-0136"
+                        />
+                    </Form.Field>
                 </CheckoutDetails.Section>
 
-                <CheckoutDetails.Section className="mt-[54px]">
+                <CheckoutDetails.Section className="mt-[53px] flex flex-col gap-y-6">
                     <CheckoutDetails.Legend> Shipping Info </CheckoutDetails.Legend>
 
+                    <Form.Field>
+                        <Form.Label htmlFor="address" error={errors.address} >
+                            Address
+                        </Form.Label>
+
+                        <Form.Input
+                            type="string"
+                            name="address"
+                            error={errors.address}
+                            placeholder="1137 Williams Avenue"
+                            className="w-[634px]"
+                        />
+                    </Form.Field>
+
                     <CheckoutDetails.Wrapper>
-                        <Form.Field>
-                            <Form.Label htmlFor="address" error={errors.address} >
-                                Address
-                            </Form.Label>
-
-                            <Form.Input
-                                type="string"
-                                name="address"
-                                error={errors.address}
-                                placeholder="1137 Williams Avenue"
-                                className="w-[634px]"
-                            />
-                        </Form.Field>
-
                         <Form.Field>
                             <Form.Label htmlFor="zip_code" error={errors.zip_code} >
                                 ZIP Code
@@ -143,24 +145,23 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                 placeholder="New York"
                             />
                         </Form.Field>
-
-                        <Form.Field>
-                            <Form.Label htmlFor="country" error={errors.country} >
-                                Country
-                            </Form.Label>
-
-                            <Form.Input
-                                type="string"
-                                name="country"
-                                error={errors.country}
-                                placeholder="United States"
-                            />
-                        </Form.Field>
                     </CheckoutDetails.Wrapper>
+
+                    <Form.Field>
+                        <Form.Label htmlFor="country" error={errors.country} >
+                            Country
+                        </Form.Label>
+
+                        <Form.Input
+                            type="string"
+                            name="country"
+                            error={errors.country}
+                            placeholder="United States"
+                        />
+                    </Form.Field>
                 </CheckoutDetails.Section>
 
-
-                <CheckoutDetails.Section className="mt-[60px">
+                <CheckoutDetails.Section className="mt-[60px]">
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
                     <div className="w-full flex justify-between">
@@ -168,16 +169,16 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
 
                         <CheckoutDetails.Wrapper className="flex-col gap-4 flex-nowrap">
                             {paymentMethods.map((payment) => (
-                                <Form.Field 
+                                <Form.Field
                                     key={payment.name}
                                     className={`
                                         flex
                                         items-center
-                                        pl-4
-                                        pt-[14px]
+                                        py-3
+                                        pl-5
                                         gap-4
-                                        w-[309px]
-                                        h-14
+                                        w-[289px]
+                                        h-auto
                                         border-[1px]
                                         rounded-lg
                                         duration-300
@@ -227,14 +228,53 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                         <div className="w-full h-auto flex gap-x-8 mt-[30px]">
                             <CashIcon />
                             <p className="text-[15px] opacity-50 font-medium">
-                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br/>
-                                courier arrives at your residence. Just make sure your address is correct so <br/>
+                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br />
+                                courier arrives at your residence. Just make sure your address is correct so <br />
                                 that your order will not be cancelled.
                             </p>
                         </div>
                     )}
                 </CheckoutDetails.Section>
             </section>
+
+            {/*
+            {/* <CheckoutDetails.Section className="mt-[60px">
+                    
+
+                    {selectedRadioBtn === "e-money" && (
+                        <div className="flex justify-between mt-6">
+                            {paymentMethods[0].inputsMoney?.map((input) => (
+                                <Form.Field key={input.name}>
+                                    <Form.Label
+                                        htmlFor={input.name}
+                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
+                                    >
+                                        {input.label}
+                                    </Form.Label>
+
+                                    <Form.Input
+                                        type="number"
+                                        name={input.name}
+                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
+                                        placeholder={input.value.toString()}
+                                    />
+                                </Form.Field>
+                            ))}
+                        </div>
+                    )}
+
+                    {selectedRadioBtn === "cash" && (
+                        <div className="w-full h-auto flex gap-x-8 mt-[30px]">
+                            <CashIcon />
+                            <p className="text-[15px] opacity-50 font-medium">
+                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br/>
+                                courier arrives at your residence. Just make sure your address is correct so <br/>
+                                that your order will not be cancelled.
+                            </p>
+                        </div>
+                    )}
+                </CheckoutDetails.Section> */}
+        </main>
     )
 }
 export default Checkout;

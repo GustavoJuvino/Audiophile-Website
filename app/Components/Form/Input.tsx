@@ -36,7 +36,6 @@ export function Input({name, error, ...props}: InputProps) {
                         w-[309px]
                         h-14
                         border-[1px]
-                        pl-6
                         rounded-lg
                         outline-none
                         text-black
