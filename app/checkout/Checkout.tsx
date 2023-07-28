@@ -51,8 +51,8 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
 
     return (
-        <main className="bg-gray-800 xl:w-[730px] w-[689px] h-full rounded-lg">
-            <section className="px-12 pb-12">
+        <main className="bg-gray-800 xl:w-[730px] lg:w-auto md:w-[689px] h-full rounded-lg">
+            <section className="lg:px-12 px-7 pb-12">
                 <h1 className="mt-[54px] text-4xl uppercase">
                     Checkout
                 </h1>
@@ -98,6 +98,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="phone"
                             error={errors.phone}
                             placeholder="+1 202-555-0136"
+                            className="max-xl:w-[50%]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
@@ -115,7 +116,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="address"
                             error={errors.address}
                             placeholder="1137 Williams Avenue"
-                            className="w-[634px]"
+                            className="xl:w-[634px] md:w-[92%] w-[460px]"
                         />
                     </Form.Field>
 
@@ -157,11 +158,12 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="country"
                             error={errors.country}
                             placeholder="United States"
+                            className="max-xl:w-[50%]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
 
-                <CheckoutDetails.Section className="mt-[60px]">
+                <CheckoutDetails.Section className="max-md:w-[475px] mt-[60px]">
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
                     <div className="w-full flex justify-between">
@@ -177,7 +179,8 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         py-3
                                         pl-5
                                         gap-4
-                                        w-[289px]
+                                        md:w-[289px]
+                                        w-[190px]
                                         h-auto
                                         border-[1px]
                                         rounded-lg
@@ -203,7 +206,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                     </div>
 
                     {selectedRadioBtn === "e-money" && (
-                        <div className="flex justify-between mt-6">
+                        <div className="flex gap-4 justify-between mt-6">
                             {paymentMethods[0].inputsMoney?.map((input) => (
                                 <Form.Field key={input.name}>
                                     <Form.Label
@@ -218,6 +221,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         name={input.name}
                                         error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
                                         placeholder={input.value.toString()}
+                                        className="xl:w-[285px]"
                                     />
                                 </Form.Field>
                             ))}
@@ -236,44 +240,6 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                     )}
                 </CheckoutDetails.Section>
             </section>
-
-            {/*
-            {/* <CheckoutDetails.Section className="mt-[60px">
-                    
-
-                    {selectedRadioBtn === "e-money" && (
-                        <div className="flex justify-between mt-6">
-                            {paymentMethods[0].inputsMoney?.map((input) => (
-                                <Form.Field key={input.name}>
-                                    <Form.Label
-                                        htmlFor={input.name}
-                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
-                                    >
-                                        {input.label}
-                                    </Form.Label>
-
-                                    <Form.Input
-                                        type="number"
-                                        name={input.name}
-                                        error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
-                                        placeholder={input.value.toString()}
-                                    />
-                                </Form.Field>
-                            ))}
-                        </div>
-                    )}
-
-                    {selectedRadioBtn === "cash" && (
-                        <div className="w-full h-auto flex gap-x-8 mt-[30px]">
-                            <CashIcon />
-                            <p className="text-[15px] opacity-50 font-medium">
-                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br/>
-                                courier arrives at your residence. Just make sure your address is correct so <br/>
-                                that your order will not be cancelled.
-                            </p>
-                        </div>
-                    )}
-                </CheckoutDetails.Section> */}
         </main>
     )
 }

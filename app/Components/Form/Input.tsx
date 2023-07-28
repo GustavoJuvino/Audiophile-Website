@@ -33,8 +33,11 @@ export function Input({name, error, ...props}: InputProps) {
                 {...props}
                 onClick={() => setSelected(true)}
                 className={twMerge(`
-                        w-[309px]
+                        xl:w-[285px]
+                        lg:w-full
+                        md:w-[285px]
                         h-14
+                        pl-6
                         border-[1px]
                         rounded-lg
                         outline-none

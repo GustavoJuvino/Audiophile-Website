@@ -23,7 +23,7 @@ const Summary = () => {
 
 
   return (
-    <section className="w-[350px] h-full rounded-lg bg-gray-800">
+    <section className="w-[350px] ml-[30px] h-full rounded-lg bg-gray-800">
       <div className="px-[33px] pb-8">
         <h1 className="text-lg uppercase mt-8">
           summary

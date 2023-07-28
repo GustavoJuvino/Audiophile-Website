@@ -60,7 +60,7 @@ const page = () => {
 
   return (
     <main className="w-full h-auto flex justify-center">
-      <section className="lg:w-[1110px] w-full h-full mx-8 mt-20 mb-12">
+      <section className="lg:w-[1110px] w-full h-full lg:mx-8 max-lg:px-8 mt-20 mb-12">
         <span className="font-medium opacity-50">
           Go back
         </span>
@@ -68,7 +68,7 @@ const page = () => {
         <FormProvider {...createCheckoutForm}>
           <form
             onSubmit={handleSubmit((data) => console.log(data))}
-            className="w-full h-full mt-[38px] flex justify-between"
+            className="w-full h-full mt-[38px] flex max-lg:flex-col justify-between"
           >
             <Checkout errors={errors} />
             <Summary />

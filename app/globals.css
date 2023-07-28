@@ -78,8 +78,3 @@ input[type="radio"] {
   border-radius: 100%;
   background-color: #D87D4A;
 }
-
-/* Chrome/Opera/Safari/Edge */
-input::-webkit-input-placeholder {
-	padding-left: 24px;
-}
