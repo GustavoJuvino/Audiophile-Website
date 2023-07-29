@@ -60,7 +60,19 @@ const page = () => {
 
   return (
     <main className="w-full h-auto flex justify-center">
-      <section className="lg:w-[1110px] w-full h-full lg:mx-8 max-lg:px-8 mt-20 mb-12">
+      <section className="
+            lg:w-[1110px]
+            w-full
+            h-full
+            lg:mx-8
+            max-lg:md:px-8
+            px-6
+            md:mt-20
+            sm:mt-12
+            mt-4
+            mb-12
+          "
+        >
         <span className="font-medium opacity-50">
           Go back
         </span>

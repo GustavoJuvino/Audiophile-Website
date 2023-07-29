@@ -51,16 +51,34 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
     const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
 
     return (
-        <main className="bg-gray-800 xl:w-[730px] lg:w-auto md:w-[689px] h-full rounded-lg">
-            <section className="lg:px-12 px-7 pb-12">
-                <h1 className="mt-[54px] text-4xl uppercase">
+        <main className="
+                bg-white
+                xl:w-[730px]
+                lg:w-auto
+                md:w-[689px]
+                w-auto
+                h-full
+                rounded-lg
+            "
+        >
+            <section className="flex flex-col max-sm:items-center lg:px-12 px-7 pb-12">
+                <h1 className="
+                        mt-[54px]
+                        max-sm:mr-[7.5rem]
+                        max-mobile:mr-[5.5rem]
+                        sm:text-4xl
+                        mobile:text-2xl
+                        text-lg
+                        uppercase
+                    "
+                >
                     Checkout
                 </h1>
 
                 <CheckoutDetails.Section>
                     <CheckoutDetails.Legend> Billing Details </CheckoutDetails.Legend>
 
-                    <CheckoutDetails.Wrapper>
+                    <CheckoutDetails.Wrapper className="max-sm:flex-col">
                         <Form.Field>
                             <Form.Label htmlFor="name" error={errors.name}>
                                 Name
@@ -98,7 +116,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="phone"
                             error={errors.phone}
                             placeholder="+1 202-555-0136"
-                            className="max-xl:w-[50%]"
+                            className="max-xl:sm:w-[50%] max-sm:w-[280px]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
@@ -116,11 +134,11 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="address"
                             error={errors.address}
                             placeholder="1137 Williams Avenue"
-                            className="xl:w-[634px] md:w-[92%] w-[460px]"
+                            className="xl:w-[634px] md:w-[92%] sm:w-[460px]"
                         />
                     </Form.Field>
 
-                    <CheckoutDetails.Wrapper>
+                    <CheckoutDetails.Wrapper className="max-sm:flex-col">
                         <Form.Field>
                             <Form.Label htmlFor="zip_code" error={errors.zip_code} >
                                 ZIP Code
@@ -158,18 +176,18 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="country"
                             error={errors.country}
                             placeholder="United States"
-                            className="max-xl:w-[50%]"
+                            className="max-xl:sm:w-[50%] max-sm:w-[280px]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
 
-                <CheckoutDetails.Section className="max-md:w-[475px] mt-[60px]">
+                <CheckoutDetails.Section className="md:w-full sm:w-[475px] mobile:w-[280px] mt-[60px]">
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
-                    <div className="w-full flex justify-between">
-                        <h2 className="font-bold"> Payment Method </h2>
+                    <div className="w-full flex max-sm:flex-col justify-between">
+                        <h2 className="font-bold max-sm:text-xs"> Payment Method </h2>
 
-                        <CheckoutDetails.Wrapper className="flex-col gap-4 flex-nowrap">
+                        <CheckoutDetails.Wrapper className="flex flex-col gap-4 max-sm:mt-4">
                             {paymentMethods.map((payment) => (
                                 <Form.Field
                                     key={payment.name}
@@ -180,7 +198,9 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         pl-5
                                         gap-4
                                         md:w-[289px]
-                                        w-[190px]
+                                        sm:w-[190px]
+                                        mobile:w-[280px]
+                                        w-auto
                                         h-auto
                                         border-[1px]
                                         rounded-lg
@@ -206,7 +226,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                     </div>
 
                     {selectedRadioBtn === "e-money" && (
-                        <div className="flex gap-4 justify-between mt-6">
+                        <div className="flex max-sm:flex-col sm:gap-4 gap-6 justify-between sm:mt-6 mt-6">
                             {paymentMethods[0].inputsMoney?.map((input) => (
                                 <Form.Field key={input.name}>
                                     <Form.Label
@@ -221,7 +241,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         name={input.name}
                                         error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
                                         placeholder={input.value.toString()}
-                                        className="xl:w-[285px]"
+                                        className="xl:w-[285px] max-sm:w-[280px]"
                                     />
                                 </Form.Field>
                             ))}
@@ -231,9 +251,9 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                     {selectedRadioBtn === "cash" && (
                         <div className="w-full h-auto flex gap-x-8 mt-[30px]">
                             <CashIcon />
-                            <p className="text-[15px] opacity-50 font-medium">
-                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br />
-                                courier arrives at your residence. Just make sure your address is correct so <br />
+                            <p className="sm:text-[15px] text-[13px] max-sm:w-[50%] opacity-50 font-medium">
+                                The ‘Cash on Delivery’ option enables you to pay in cash when our delivery <br className="max-sm:hidden" />
+                                courier arrives at your residence. Just make sure your address is correct so <br className="max-sm:hidden" />
                                 that your order will not be cancelled.
                             </p>
                         </div>

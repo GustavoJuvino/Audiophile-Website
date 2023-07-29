@@ -73,8 +73,8 @@ input[type="radio"] {
 .selected::before {
   content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 100%;
   background-color: #D87D4A;
 }

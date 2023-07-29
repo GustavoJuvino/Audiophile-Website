@@ -10,7 +10,7 @@ export function Label({error, ...props}: LabelProps) {
     return (
         <div>
             <label 
-                className={`text-[14px] font-bold ${error && "text-red-500"}`}
+                className={`sm:text-[14px] text-[12px] font-bold ${error && "text-red-500"}`}
                 {...props}
             />
         </div>

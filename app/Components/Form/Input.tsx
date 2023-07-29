@@ -36,6 +36,7 @@ export function Input({name, error, ...props}: InputProps) {
                         xl:w-[285px]
                         lg:w-full
                         md:w-[285px]
+                        max-mobile:w-[180px]
                         h-14
                         pl-6
                         border-[1px]
