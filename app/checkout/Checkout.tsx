@@ -106,7 +106,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                         </Form.Field>
                     </CheckoutDetails.Wrapper>
 
-                    <Form.Field className="mt-6">
+                    <Form.Field className="md:w-[285px] sm:w-[280px] mt-6">
                         <Form.Label htmlFor="phone" error={errors.phone} >
                             Phone Number
                         </Form.Label>
@@ -116,15 +116,15 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="phone"
                             error={errors.phone}
                             placeholder="+1 202-555-0136"
-                            className="max-xl:sm:w-[50%] max-sm:w-[280px]"
+                            className="max-sm:mobile:w-[280px]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
 
-                <CheckoutDetails.Section className="mt-[53px] flex flex-col gap-y-6">
-                    <CheckoutDetails.Legend> Shipping Info </CheckoutDetails.Legend>
+                <CheckoutDetails.Section className="mt-[53px] flex flex-col">
+                    <CheckoutDetails.Legend className="mb-[16px]"> Shipping Info </CheckoutDetails.Legend>
 
-                    <Form.Field>
+                    <Form.Field className="">
                         <Form.Label htmlFor="address" error={errors.address} >
                             Address
                         </Form.Label>
@@ -134,11 +134,11 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="address"
                             error={errors.address}
                             placeholder="1137 Williams Avenue"
-                            className="xl:w-[634px] md:w-[92%] sm:w-[460px]"
+                            className="xl:w-[634px] max-lg:w-[400px]"
                         />
                     </Form.Field>
 
-                    <CheckoutDetails.Wrapper className="max-sm:flex-col">
+                    <CheckoutDetails.Wrapper className="max-sm:flex-col mt-6">
                         <Form.Field>
                             <Form.Label htmlFor="zip_code" error={errors.zip_code} >
                                 ZIP Code
@@ -166,7 +166,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                         </Form.Field>
                     </CheckoutDetails.Wrapper>
 
-                    <Form.Field>
+                    <Form.Field className="md:w-[285px] sm:w-[280px] mt-6">
                         <Form.Label htmlFor="country" error={errors.country} >
                             Country
                         </Form.Label>
@@ -176,12 +176,12 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             name="country"
                             error={errors.country}
                             placeholder="United States"
-                            className="max-xl:sm:w-[50%] max-sm:w-[280px]"
+                            className="max-sm:mobile:w-[280px]"
                         />
                     </Form.Field>
                 </CheckoutDetails.Section>
 
-                <CheckoutDetails.Section className="md:w-full sm:w-[475px] mobile:w-[280px] mt-[60px]">
+                <CheckoutDetails.Section className="sm:w-full mobile:w-[280px] mt-[60px]">
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
                     <div className="w-full flex max-sm:flex-col justify-between">
@@ -197,10 +197,10 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         py-3
                                         pl-5
                                         gap-4
-                                        md:w-[289px]
-                                        sm:w-[190px]
-                                        mobile:w-[280px]
-                                        w-auto
+                                        xl:w-[309px]
+                                        lg:w-[220px]
+                                        md:w-[309px]
+                                        sm:w-[220px]
                                         h-auto
                                         border-[1px]
                                         rounded-lg
@@ -241,7 +241,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         name={input.name}
                                         error={input.name === "moneyPIN" ? errors.moneyPIN : errors.moneyNumber}
                                         placeholder={input.value.toString()}
-                                        className="xl:w-[285px] max-sm:w-[280px]"
+                                        className="max-sm:w-[280px]"
                                     />
                                 </Form.Field>
                             ))}

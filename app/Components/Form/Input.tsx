@@ -20,23 +20,17 @@ export function Input({name, error, ...props}: InputProps) {
     }, []);
 
     return (
-        <div className="flex flex-col relative" ref={inputRef}>
-            {error && (
-                <span className="absolute top-[-1.7rem] right-0 text-xs font-medium text-red-500">
-                    {error.message}
-                </span>
-            )}
-
+        <div ref={inputRef}>
             <input
                 id={name}
                 {...register(name)} 
                 {...props}
                 onClick={() => setSelected(true)}
                 className={twMerge(`
-                        xl:w-[285px]
-                        lg:w-full
-                        md:w-[285px]
-                        max-mobile:w-[180px]
+                        xl:w-[309px]
+                        lg:w-auto
+                        md:w-[309px]
+                        max-sm:w-[280px]
                         h-14
                         pl-6
                         border-[1px]

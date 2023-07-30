@@ -117,7 +117,7 @@ const Header = () => {
                     mt-14
                     opacity-20
                     animate-divider
-                    ${pathname.includes("products") && "hidden"}
+                    ${pathname.includes("products" && ("checkout")) && "hidden"}
                 `}    
             /> 
 

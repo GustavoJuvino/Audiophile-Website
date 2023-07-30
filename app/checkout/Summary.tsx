@@ -23,7 +23,17 @@ const Summary = () => {
 
 
   return (
-    <section className="w-[350px] ml-[30px] h-full rounded-lg bg-gray-800">
+    <section className="
+        lg:w-[350px]
+        md:w-[689px]
+        w-full
+        lg:ml-[30px]
+        max-lg:mt-8
+        h-full
+        rounded-l
+       bg-white
+        "
+      >
       <div className="px-[33px] pb-8">
         <h1 className="text-lg uppercase mt-8">
           summary
@@ -62,12 +72,18 @@ const Summary = () => {
             <h2>total</h2>
             <h2>shipping</h2>
             <h2>vat {"(included)"}</h2>
+            <h2 className="mt-6">
+              {total > 0 && "grand total"}
+            </h2>
           </div>
 
           <div className="flex flex-col items-end gap-y-2 text-lg">
             <span>{`$ ${total ? total.toLocaleString("en-US") : 0}`}</span>
             <span>$ 50</span>
             <span>$ 1,079</span>
+            <span className="mt-6 text-raw-sienna">
+              {total > 0 && `$ ${(total + 50).toLocaleString("en-US")}`}
+            </span>
           </div>
         </div>
 

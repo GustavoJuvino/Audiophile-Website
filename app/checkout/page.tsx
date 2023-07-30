@@ -66,7 +66,7 @@ const page = () => {
             h-full
             lg:mx-8
             max-lg:md:px-8
-            px-6
+            max-md:px-6
             md:mt-20
             sm:mt-12
             mt-4
