@@ -24,17 +24,17 @@ const Summary = () => {
 
   return (
     <section className="
-        lg:w-[350px]
-        md:w-[689px]
-        w-full
-        lg:ml-[30px]
-        max-lg:mt-8
-        h-full
-        rounded-l
-       bg-white
+          lg:w-[350px]
+          md:w-[689px]
+          w-full
+          lg:ml-[30px]
+          max-lg:mt-8
+          h-full
+          rounded-l
+        bg-white
         "
       >
-      <div className="px-[33px] pb-8">
+      <div className="mobile:px-[33px] px-2 pb-8">
         <h1 className="text-lg uppercase mt-8">
           summary
         </h1>
