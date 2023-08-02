@@ -13,7 +13,10 @@ interface ContextProps {
     setTotal: Dispatch<SetStateAction<number>>;
 
     empty: boolean;
-    setEmpty: Dispatch<SetStateAction<boolean>>
+    setEmpty: Dispatch<SetStateAction<boolean>>;
+
+    currentRadioValue: string;
+    setCurrentRadioValue: Dispatch<SetStateAction<string>>;
 }
 
 const GlobalContext = createContext<ContextProps>({
@@ -27,7 +30,10 @@ const GlobalContext = createContext<ContextProps>({
     setTotal: (): number => 0,
     
     empty: true,
-    setEmpty: (): boolean => true
+    setEmpty: (): boolean => true,
+
+    currentRadioValue: "",
+    setCurrentRadioValue: (): string => ""
 });
 
 // @ts-ignore
@@ -36,6 +42,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [quantityCart, setQuantityCart] = useState(0);
     const [total, setTotal] = useState(0)
     const [empty, setEmpty] = useState(true);
+    const [currentRadioValue, setCurrentRadioValue] = useState("e-money");
 
     return (
         <GlobalContext.Provider value={{
@@ -46,7 +53,9 @@ export const GlobalContextProvider = ({ children }) => {
                 total,
                 setTotal,
                 empty,
-                setEmpty
+                setEmpty,
+                currentRadioValue,
+                setCurrentRadioValue,
             }}
         >
             {children}

@@ -1,13 +1,15 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkout from "./Checkout";
 import Summary from "./Summary";
+import Receipt from "./Receipt";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useGlobalContext } from "../Context/store";
 
-const CheckoutFormSchema = z.object({
+let CheckoutFormSchema = z.object({
   name: z.string().nonempty({
     message: "Can't be empty"
   }),
@@ -36,7 +38,9 @@ const CheckoutFormSchema = z.object({
     message: "Can't be empty",
   }),
   moneyNumber: z.string().nonempty({
-    message: "Can't be empty",
+    message: "Can't be empty"
+  }).min(9, {
+    message: "At least 9 characters long",
   }),
   moneyPIN: z.string().nonempty({
     message: "Can't be empty",
@@ -48,15 +52,24 @@ const CheckoutFormSchema = z.object({
 type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
 
 const page = () => {
+  const [receipt, setReceipt] = useState(false)
+  const { currentRadioValue } = useGlobalContext();
   const createCheckoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(CheckoutFormSchema),
   });
 
   const {
     handleSubmit,
+    resetField,
     formState: { errors }
   } = createCheckoutForm;
 
+  useEffect(() => {
+    if(currentRadioValue === "cash") {
+      resetField("moneyNumber", {defaultValue: "         "})
+      resetField("moneyPIN", {defaultValue: "    "})
+    }
+  }, [currentRadioValue, resetField])
 
   return (
     <main className="w-full h-auto flex justify-center">
@@ -72,22 +85,49 @@ const page = () => {
             mt-4
             mb-12
           "
-        >
+      >
         <span className="font-medium opacity-50">
           Go back
         </span>
 
         <FormProvider {...createCheckoutForm}>
           <form
-            onSubmit={handleSubmit((data) => console.log(data))}
+            onSubmit={handleSubmit((data) => {
+              if(currentRadioValue === "cash") {
+                // @ts-ignore
+                delete data["moneyNumber"]
+                // @ts-ignore
+                delete data["moneyPIN"]
+              } 
+              console.log(data)
+              setReceipt(true)
+            })}
             className="w-full h-full mt-[38px] flex max-lg:flex-col justify-between"
           >
             <Checkout errors={errors} />
             <Summary />
           </form>
         </FormProvider>
-
       </section>
+
+      {receipt && (
+        <>
+          <div
+            className="
+              w-full
+              h-auto
+              bg-black
+              opacity-40
+              z-[90]
+              absolute
+              top-[6rem]
+              bottom-0
+            "
+          />
+          <Receipt />
+        </>
+      )}
+
     </main>
   )
 }

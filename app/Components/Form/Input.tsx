@@ -41,7 +41,7 @@ export function Input({name, error, ...props}: InputProps) {
                         font-bold
                         duration-300
                         ${selected ? "border-raw-sienna" : "border-[#CFCFCF]"}
-                        ${error && "border-2 border-red-600"} */}
+                        ${error && "border-2 border-red-600"}
                     `, props.className)
                 }
             />

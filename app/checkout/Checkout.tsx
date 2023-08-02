@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from "../Components/Form";
 import { CheckoutDetails } from "../Components/CheckoutDetails";
 import { CashIcon } from "@/public/assets/svgs";
 import { FieldErrors } from "react-hook-form";
+import { useGlobalContext } from "../Context/store";
 
 let paymentMethods = [
     {
@@ -44,11 +45,10 @@ interface CheckoutProps {
 }
 
 const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
+    const { currentRadioValue, setCurrentRadioValue } = useGlobalContext();
 
-    const [selectedRadioBtn, setSelectedRadionBtn] = useState("e-money");
-
-    const isRadioSelected = (value: string): boolean => selectedRadioBtn === value;
-    const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadionBtn(e.currentTarget.value);
+    const isRadioSelected = (value: string): boolean => currentRadioValue === value;
+    const handleRadioCheck = (e: React.ChangeEvent<HTMLInputElement>): void => setCurrentRadioValue(e.currentTarget.value);
 
     return (
         <main className="
@@ -105,6 +105,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                             />
                         </Form.Field>
                     </CheckoutDetails.Wrapper>
+
 
                     <Form.Field className="w-fit mt-6">
                         <Form.Label htmlFor="phone" error={errors.phone} >
@@ -181,6 +182,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                     </Form.Field>
                 </CheckoutDetails.Section>
 
+
                 <CheckoutDetails.Section className="max-md:sm:w-[455px] sm:w-full mobile:w-[280px] mt-[60px]">
                     <CheckoutDetails.Legend> Payment Details </CheckoutDetails.Legend>
 
@@ -205,7 +207,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         border-[1px]
                                         rounded-lg
                                         duration-300
-                                        ${selectedRadioBtn === payment.name && "border-raw-sienna"}
+                                        ${currentRadioValue === payment.name && "border-raw-sienna"}
                                     `}
                                 >
                                     <Form.Input
@@ -214,7 +216,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                                         name={payment.name}
                                         checked={isRadioSelected(payment.name)}
                                         onChange={handleRadioCheck}
-                                        className={selectedRadioBtn === payment.name ? "selected" : ""}
+                                        className={currentRadioValue === payment.name ? "selected" : ""}
                                     />
 
                                     <Form.Label htmlFor={payment.name}>
@@ -225,7 +227,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                         </CheckoutDetails.Wrapper>
                     </div>
 
-                    {selectedRadioBtn === "e-money" && (
+                    {currentRadioValue === "e-money" && (
                         <div className="flex max-sm:flex-col sm:gap-4 gap-6 justify-between sm:mt-6 mt-6">
                             {paymentMethods[0].inputsMoney?.map((input) => (
                                 <Form.Field key={input.name}>
@@ -248,7 +250,7 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
                         </div>
                     )}
 
-                    {selectedRadioBtn === "cash" && (
+                    {currentRadioValue === "cash" && (
                         <div className="w-full h-auto flex gap-x-8 mt-[30px]">
                             <CashIcon />
                             <p className="sm:text-[15px] text-[13px] max-sm:w-[50%] opacity-50 font-medium">
