@@ -6,3 +6,4 @@ export { default as Facebook } from "./icon-facebook.svg";
 export { default as Twitter } from "./icon-twitter.svg";
 export { default as Instagram } from "./icon-instagram.svg";
 export { default as CashIcon } from "./icon-cash-on-delivery.svg";
+export { default as OrderConfirm } from "./icon-order-confirmation.svg"

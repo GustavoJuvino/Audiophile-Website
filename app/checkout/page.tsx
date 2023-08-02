@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Checkout from "./Checkout";
 import Summary from "./Summary";
 import Receipt from "./Receipt";
@@ -52,8 +52,9 @@ let CheckoutFormSchema = z.object({
 type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
 
 const page = () => {
-  const [receipt, setReceipt] = useState(false)
+  const [receipt, setReceipt] = useState(true)
   const { currentRadioValue } = useGlobalContext();
+
   const createCheckoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(CheckoutFormSchema),
   });
@@ -70,6 +71,7 @@ const page = () => {
       resetField("moneyPIN", {defaultValue: "    "})
     }
   }, [currentRadioValue, resetField])
+
 
   return (
     <main className="w-full h-auto flex justify-center">
