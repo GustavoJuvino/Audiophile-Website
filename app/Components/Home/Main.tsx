@@ -58,24 +58,24 @@ const Main = () => {
             {/* Image */}
             <div className="w-[700px] h-auto relative">
                 <Image
-                width={700}
-                height={886}
-                alt="Headphones-Image"
-                src="/assets/home/desktop/image-main.png"
-                priority
-                className="
-                    absolute
-                    lg:bottom-[-6.5rem]
-                    sm:bottom-[-10rem]
-                    bottom-[-12rem]
-                    w-auto
-                    lg:h-[886px]
-                    h-[980px]
-                    object-cover
-                    z-[2]
-                    max-lg:brightness-50
-                    max-lg:opacity-70
-                "
+                    width={700}
+                    height={886}
+                    alt="Headphones-Image"
+                    src="/assets/home/desktop/image-main.png"
+                    priority
+                    className="
+                        absolute
+                        lg:bottom-[-6.5rem]
+                        sm:bottom-[-10rem]
+                        bottom-[-12rem]
+                        w-auto
+                        lg:h-[886px]
+                        h-[980px]
+                        object-cover
+                        z-[2]
+                        max-lg:brightness-50
+                        max-lg:opacity-70
+                    "
                 />
                 <div className="
                     w-[500px]

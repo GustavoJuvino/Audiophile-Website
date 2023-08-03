@@ -65,7 +65,7 @@ const Header = () => {
                 <ul className="w-[430px] flex justify-between max-md:hidden">
                     {headerItems.map((item) =>
                         <li key={item} >
-                            <Link href={item === "home" ? "/" : item}
+                            <Link href={item === "home" ? "/" : `/${item}`}
                                 className="
                                 text-subTitle
                                 text-white

@@ -6,6 +6,7 @@ import Categories from "@/app/Components/Categories";
 import AudioGear from "@/app/Components/AudioGear";
 import Back from "./Back";
 import getData from "@/app/Helper/getData";
+import { notFound } from "next/navigation";
 
 const products = [
     "yx1-earphones",
@@ -108,5 +109,5 @@ export default async function page({ params }: { params: { product: string } }) 
                 </section>
             </main>
         )
-    } else return <h1>Not Founded</h1>
+    } else notFound()
 }

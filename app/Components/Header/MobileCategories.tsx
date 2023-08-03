@@ -32,7 +32,9 @@ const MobileCategories = () => {
                 "
             >
                 {CategoriesItems.map((category) => (
-                    <div className="
+                    <div 
+                        key={category.id}
+                        className="
                                 sm:w-[223px]
                                 w-full
                                 mobile:w-[327px]

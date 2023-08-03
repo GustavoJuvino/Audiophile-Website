@@ -77,7 +77,7 @@ const ZX9_Speaker = () => {
         </p>
         <ProductButton
           click={() => router.push("/products/zx9-speaker")}
-          type={2}
+          format={2}
           value="see product"
         />
       </div>

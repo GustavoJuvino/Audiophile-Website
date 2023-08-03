@@ -44,7 +44,7 @@ const Footer = () => {
                                 "
                             >
                                 <Link 
-                                    href={item === "home" ? "/" : item}
+                                    href={item === "home" ? "/" : `/${item}`}
                                     className="
                                         cursor-pointer
                                         duration-300
