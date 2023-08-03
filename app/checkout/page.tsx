@@ -52,7 +52,7 @@ let CheckoutFormSchema = z.object({
 type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
 
 const page = () => {
-  const [receipt, setReceipt] = useState(true)
+  const [receipt, setReceipt] = useState(false)
   const { currentRadioValue } = useGlobalContext();
 
   const createCheckoutForm = useForm<CheckoutFormData>({

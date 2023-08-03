@@ -87,9 +87,8 @@ const Summary = () => {
           </div>
         </div>
 
-        <div></div>
-
         <LargeButton
+          click={() => window.scrollTo(0, 0)}
           value="continue & pay"
           type="submit"
         />

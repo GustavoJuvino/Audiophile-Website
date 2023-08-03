@@ -5,6 +5,7 @@ import CartCheckout from "./CartCheckout";
 import useFetch from "@/app/hooks/useFetch";
 import { useGlobalContext } from "@/app/Context/store";
 import useGetLocalStorage from "@/app/hooks/useGetLocalStorage";
+import useRemoveAllProducts from "@/app/hooks/useRemoveAllProducts";
 
 interface CartProps { activeCart: boolean };
 
@@ -13,10 +14,10 @@ export let filteredArrays: LocalProductProps[] = [];
 
 const Cart: React.FC<CartProps> = ({ activeCart }) => {
     const { data, request } = useFetch();
+    const { removeAllProducts } = useRemoveAllProducts();
     const { getLocalStorage } = useGetLocalStorage();
     const {
         total,
-        localProducts,
         setLocalProducts,
         quantityCart,
         setQuantityCart,
@@ -43,14 +44,6 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
         });
     };
 
-    const removeAllProducts = () => {
-        setEmpty(true);
-        productKeys.map((key) => {
-            if (getLocalStorage(key)) {
-                localStorage.removeItem(key)
-            }
-        })
-    }
 
     useEffect(() => { updateCart() }, [updateCart, empty, quantityCart]);
 
@@ -111,15 +104,6 @@ const Cart: React.FC<CartProps> = ({ activeCart }) => {
                             quantity={getLocalStorage(key).quantity}
                         />
                     ))}
-                    {/* {localProducts.map((product) => (
-                        <CartProduct
-                            key={product.slug}
-                            name={product.name}
-                            slug={product.slug}
-                            price={product.price}
-                            quantity={product.quantity}
-                        />
-                    ))} */}
 
                     {empty && (
                         <div className="mt-8 w-full h-full flex justify-center items-center text-center">
