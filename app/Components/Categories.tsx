@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ShopButton from "./Buttons/ShopButton";
 
-const CategoriesItems = [
+export const CategoriesItems = [
   {
     id: 1,
     product: "headphones"
