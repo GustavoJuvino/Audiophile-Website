@@ -7,6 +7,8 @@ import AudioGear from "@/app/Components/AudioGear";
 import Back from "./Back";
 import getData from "@/app/Helper/getData";
 import { notFound } from "next/navigation";
+import Skeleton from "react-loading-skeleton";
+import Skull from "./Skull";
 
 const products = [
     "yx1-earphones",

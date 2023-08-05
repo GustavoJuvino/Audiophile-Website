@@ -2,7 +2,9 @@ import getData from "../Helper/getData";
 import ProductContainer from "../Components/ProductContainer";
 import Categories from "../Components/Categories";
 import AudioGear from "../Components/AudioGear";
+import Skeleton from 'react-loading-skeleton'
 import { notFound } from 'next/navigation'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
@@ -21,7 +23,7 @@ export default async function page({params}: {params: {category: string}}) {
             <main className="w-full h-auto flex flex-col items-center">
                 <div className="w-full sm:h-[336px] h-[192px] bg-black flex justify-center items-center">
                     <h1 className="sm:text-5xl text-2xl text-white uppercase">
-                        {category}
+                        {category || <Skeleton  baseColor="#202020" highlightColor="#444" /> }
                     </h1>
                 </div>
 
@@ -50,7 +52,7 @@ export default async function page({params}: {params: {category: string}}) {
                                 reverse={product?.reverse}
                                 slug={product.slug}
                             />
-                        ))}
+                        )) || <Skeleton count={1} /> }
                     </div>
 
                     <Categories />

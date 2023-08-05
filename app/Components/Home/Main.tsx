@@ -3,6 +3,8 @@ import React from 'react';
 import Image from "next/image";
 import DefaultButton from "../Buttons/DefaultButton";
 import { useRouter } from "next/navigation";
+import MainSkeleton from "@/app/skeletons/MainSkeleton";
+
 
 const Main = () => {
     const router = useRouter();
@@ -41,13 +43,13 @@ const Main = () => {
                     new product
                 </span>
                 <h1 className="mobile:text-6xl text-5xl my-6 uppercase">
-                XX99 Mark II <br />
-                Headphones
+                    XX99 Mark II <br />
+                    Headphones
                 </h1>
                 <p className="lg:w-[68%] text-base opacity-75 mb-10">
-                Experience natural, lifelike audio and exceptional
-                build quality made for the passionate music
-                enthusiast.
+                    Experience natural, lifelike audio and exceptional
+                    build quality made for the passionate music
+                    enthusiast.
                 </p>
                 <DefaultButton 
                     click={() => router.push("/products/xx99-mark-two-headphones")}

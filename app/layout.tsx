@@ -2,7 +2,10 @@ import { Manrope } from 'next/font/google'
 import Header from "./Components/Header/Header"
 import Footer from "./Components/Footer"
 import { GlobalContextProvider } from "./Context/store"
+import { SkeletonTheme } from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css";
 import './globals.css'
+
 
 export const metadata = {
   title: 'Audiophile',
@@ -20,14 +23,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={manrope.className}>
-        <GlobalContextProvider>
-          <Header />
-          {children}
-          <Footer />
-        </GlobalContextProvider>
-      </body>
-    </html>
+    <SkeletonTheme baseColor="#c2bdbd" highlightColor="#444">
+      <html lang="en">
+        <body className={manrope.className}>
+          <GlobalContextProvider>
+            <Header />
+            {children}
+            <Footer />
+          </GlobalContextProvider>
+        </body>
+      </html>
+    </SkeletonTheme>
   )
 }
