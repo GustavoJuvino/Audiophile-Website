@@ -7,8 +7,6 @@ import AudioGear from "@/app/Components/AudioGear";
 import Back from "./Back";
 import getData from "@/app/Helper/getData";
 import { notFound } from "next/navigation";
-import Skeleton from "react-loading-skeleton";
-import Skull from "./Skull";
 
 const products = [
     "yx1-earphones",
@@ -61,7 +59,6 @@ export default async function page({ params }: { params: { product: string } }) 
                     "
                 >
                     <div className="w-full h-auto lg:mt-20 sm:mt-8 mt-4">
-
                         <Back />
 
                         {items.map((item: ItemsProps) => item.slug === product && (

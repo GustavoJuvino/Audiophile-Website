@@ -3,11 +3,9 @@ import React from 'react';
 import Image from "next/image";
 import DefaultButton from "../Buttons/DefaultButton";
 import { useRouter } from "next/navigation";
-import MainSkeleton from "@/app/skeletons/MainSkeleton";
-
 
 const Main = () => {
-    const router = useRouter();
+  const router = useRouter();
 
   return (
     <section className="bg-onyx w-full h-auto flex justify-center items-center">

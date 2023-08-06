@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import ShopButton from "./Buttons/ShopButton";
 
 export const CategoriesItems = [
@@ -38,7 +38,7 @@ const Categories = () => {
       "
     >
       {CategoriesItems.map((item) =>
-        <div 
+        <div
           key={item.id}
           className="
             sm:w-[350px]
@@ -65,7 +65,7 @@ const Categories = () => {
             <h3 className="text-lg uppercase">
               {item.product}
             </h3>
-            <ShopButton 
+            <ShopButton
               click={() => router.push(`/${item.product}`)}
               value="shop"
             />

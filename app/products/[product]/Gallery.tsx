@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Image from "next/image";
 
@@ -6,18 +8,19 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ product }) => {
+
     return (
         <div className="
-                w-full
-                xl:h-[592px]
-                flex
-                max-sm:flex-col
-                sm:gap-[30px]
-                gap-5
-                lg:mt-[10rem]
-                sm:mt-[7.5rem]
-                mt-[5.5rem]
-            "
+                    w-full
+                    xl:h-[592px]
+                    flex
+                    max-sm:flex-col
+                    sm:gap-[30px]
+                    gap-5
+                    lg:mt-[10rem]
+                    sm:mt-[7.5rem]
+                    mt-[5.5rem]
+                "
         >
             <div className="flex flex-col lg:gap-8 gap-5">
                 <Image
@@ -41,13 +44,13 @@ const Gallery: React.FC<GalleryProps> = ({ product }) => {
                 alt="Grid-Image-3"
                 src={`/assets/products/${product}/desktop/image-gallery-3.jpg`}
                 className="
-                    lg:w-[635px]
-                    lg:h-[592px]
-                    sm:w-[395px]
-                    h-[368px]
-                    rounded-lg
-                    object-cover
-                "
+                        lg:w-[635px]
+                        lg:h-[592px]
+                        sm:w-[395px]
+                        h-[368px]
+                        rounded-lg
+                        object-cover
+                    "
             />
         </div>
     )
