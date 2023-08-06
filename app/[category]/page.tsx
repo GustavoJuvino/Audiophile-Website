@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
 
-export default async function page({params}: {params: {category: string}}) {
+export default async function page({ params }: { params: { category: string } }) {
     const { category } = params;
 
     // user-defined guard
@@ -18,12 +18,12 @@ export default async function page({params}: {params: {category: string}}) {
     // Data Products
     const products = isCategory(category) && await getData("products");
 
-    if(isCategory(category)) {
+    if (isCategory(category)) {
         return (
             <main className="w-full h-auto flex flex-col items-center">
                 <div className="w-full sm:h-[336px] h-[192px] bg-black flex justify-center items-center">
                     <h1 className="sm:text-5xl text-2xl text-white uppercase">
-                        {category || <Skeleton  baseColor="#202020" highlightColor="#444" /> }
+                        {category || <Skeleton baseColor="#202020" highlightColor="#444" />}
                     </h1>
                 </div>
 
@@ -42,7 +42,7 @@ export default async function page({params}: {params: {category: string}}) {
                         "
                     >
                         {products.map((product: ProductProps) => product.category === category && (
-                            <ProductContainer 
+                            <ProductContainer
                                 key={product.id}
                                 newProduct={product.new}
                                 name={product.name}
@@ -52,7 +52,7 @@ export default async function page({params}: {params: {category: string}}) {
                                 reverse={product?.reverse}
                                 slug={product.slug}
                             />
-                        )) || <Skeleton count={1} /> }
+                        ))}
                     </div>
 
                     <Categories />
@@ -62,6 +62,7 @@ export default async function page({params}: {params: {category: string}}) {
                     </div>
                 </section>
             </main>
+
         )
     } else notFound()
 }
