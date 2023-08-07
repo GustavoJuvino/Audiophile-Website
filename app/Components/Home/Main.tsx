@@ -24,17 +24,17 @@ const Main = () => {
         >
             {/* Texts */}
             <div className="
-                text-white
-                flex
-                flex-col
-                max-lg:items-center
-                max-lg:text-center
-                max-lg:w-[380px]
-                lg:mt-32
-                max-lg:sm:mt-[160px]
-                max-sm:mt-24
-                max-sm:px-4
-                z-40
+                    text-white
+                    flex
+                    flex-col
+                    max-lg:items-center
+                    max-lg:text-center
+                    max-lg:w-[380px]
+                    lg:mt-32
+                    max-lg:sm:mt-[160px]
+                    max-sm:mt-24
+                    max-sm:px-4
+                    z-40
                 "
             >
                 <span className="text-overline uppercase opacity-50">

@@ -6,13 +6,13 @@ import AudioGear from "./Components/AudioGear";
 export default function Home() {
   return (
     <main className="
-        w-full
-        h-auto
-        flex
-        flex-col
-        justify-center
-        items-center
-      "
+          w-full
+          h-auto
+          flex
+          flex-col
+          justify-center
+          items-center
+        "
     >
       <Main />
       <Categories />

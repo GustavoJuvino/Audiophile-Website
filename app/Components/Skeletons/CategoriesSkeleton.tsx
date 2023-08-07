@@ -10,14 +10,13 @@ const CategoriesSkeleton = () => {
             xl:w-[1110px]
             w-full
             h-auto
-            mt-[172px]
+            mt-[120px]
             flex
             gap-x-8
             max-sm:flex-col
             justify-between
             max-sm:items-center
             max-sm:gap-[5.25rem]
-            max-xl:px-4
         "
         >
             {CategoriesItems.map((category) => (

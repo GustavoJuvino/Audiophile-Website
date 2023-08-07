@@ -7,8 +7,10 @@ const PreviewProductSkeleton = () => {
     return (
         <section className="[&>*:nth-child(2)]:lg:flex-row-reverse">
             {
-                products.map(() => (
-                    <div className="
+                products.map((product) => (
+                    <div
+                        key={product} 
+                        className="
                             w-full
                             h-auto
                             flex

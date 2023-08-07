@@ -127,7 +127,10 @@ const Receipt = () => {
                   cursor-pointer
                 "
               >
-                and {localProducts.length - 1} other item{"(s)"}
+                {localProducts.length > 1 ? `and ${localProducts.length - 1} other item(s)`
+                  : ""
+                }
+                {/* and {localProducts.length > 1 && localProducts.length - 1} other item{"(s)"} */}
               </span>
             )}
           </div>
