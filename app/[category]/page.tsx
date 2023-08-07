@@ -9,9 +9,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const categories = ["headphones", "speakers", "earphones"] as const;
 type Category = (typeof categories)[number];
 
-export default async function page({ params }: { params: { category: string } }) {
+export async function generateMetadata({ params }: { params: { category: string } }) {
     const { category } = params;
 
+    return {
+        title: category.charAt(0).toUpperCase() + category.slice(1)
+    }
+}
+
+export default async function page({ params }: { params: { category: string } }) {
+    const { category } = params;
     // user-defined guard
     const isCategory = (value: any): value is Category => categories.includes(value);
 

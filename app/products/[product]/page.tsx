@@ -37,6 +37,8 @@ interface ItemsProps extends ProductProps {
     others: OthersProps[]
 }
 
+export const metadata = { title:"Product" }
+
 export default async function page({ params }: { params: { product: string } }) {
     const { product } = params
 

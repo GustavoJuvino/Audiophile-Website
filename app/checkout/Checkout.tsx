@@ -64,8 +64,8 @@ const Checkout: React.FC<CheckoutProps> = ({ errors }) => {
             <section className="flex flex-col max-sm:items-center lg:px-12 px-7 pb-12">
                 <h1 className="
                         mt-[54px]
-                        max-sm:mr-[7.5rem]
-                        max-mobile:mr-[10.7rem]
+                        max-sm:mr-[10.5rem]
+                        max-small-mobile:ml-[5.5rem]
                         sm:text-4xl
                         mobile:text-2xl
                         text-lg
