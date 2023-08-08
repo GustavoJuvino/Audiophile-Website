@@ -6,9 +6,9 @@ const DefaultButton: React.FC<ButtonProps> = ({
   click
 }) => {
   return (
-    <button 
-        onClick={click}
-        className="
+    <button
+      onClick={click}
+      className="
             w-40
             h-12
             text-subTitle
@@ -19,7 +19,7 @@ const DefaultButton: React.FC<ButtonProps> = ({
             hover:bg-light-raw-sienna
         "
     >
-        {value}
+      {value}
     </button>
   )
 }

@@ -158,13 +158,13 @@ const Receipt = () => {
             </span>
           </div>
         </section>
-        <LargeButton 
+        <LargeButton
           click={() => {
             router.push("/")
             removeAllProducts()
             window.scrollTo(0, 0)
           }}
-         value="Back to home" />
+          value="Back to home" />
       </div>
     </div>
   )

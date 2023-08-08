@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkout from "./Checkout";
 import Summary from "./Summary";
 import Receipt from "./Receipt";
@@ -8,6 +8,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGlobalContext } from "../Context/store";
+import { useRouter } from "next/navigation";
 
 let CheckoutFormSchema = z.object({
   name: z.string().nonempty({
@@ -54,6 +55,7 @@ type CheckoutFormData = z.infer<typeof CheckoutFormSchema>;
 const page = () => {
   const [receipt, setReceipt] = useState(false)
   const { currentRadioValue } = useGlobalContext();
+  const router = useRouter()
 
   const createCheckoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(CheckoutFormSchema),
@@ -66,9 +68,9 @@ const page = () => {
   } = createCheckoutForm;
 
   useEffect(() => {
-    if(currentRadioValue === "cash") {
-      resetField("moneyNumber", {defaultValue: "         "})
-      resetField("moneyPIN", {defaultValue: "    "})
+    if (currentRadioValue === "cash") {
+      resetField("moneyNumber", { defaultValue: "         " })
+      resetField("moneyPIN", { defaultValue: "    " })
     }
   }, [currentRadioValue, resetField])
 
@@ -88,20 +90,19 @@ const page = () => {
             mb-12
           "
       >
-        <span className="font-medium opacity-50">
+        <span onClick={() => router.back()} className="font-medium opacity-50 cursor-pointer">
           Go back
         </span>
 
         <FormProvider {...createCheckoutForm}>
           <form
             onSubmit={handleSubmit((data) => {
-              if(currentRadioValue === "cash") {
+              if (currentRadioValue === "cash") {
                 // @ts-ignore
                 delete data["moneyNumber"]
                 // @ts-ignore
                 delete data["moneyPIN"]
-              } 
-              console.log(data)
+              }
               setReceipt(true)
             })}
             className="w-full h-full mt-[38px] flex max-lg:flex-col justify-between"

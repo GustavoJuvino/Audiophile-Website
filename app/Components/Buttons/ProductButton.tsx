@@ -6,24 +6,24 @@ const ProductButton: React.FC<ButtonProps> = ({
     value,
     click,
 }) => {
-  return (
-    <button
-        onClick={click}
-        className={`
+    return (
+        <button
+            onClick={click}
+            className={`
             w-40
             h-12
             text-subTitle
             uppercase
             duration-300
-            ${format === 2 ? 
-                "text-white bg-black hover:bg-[#4C4C4C]"
-                : "border-[1px] border-black text-black hover:bg-black hover:text-white"
-            }
+            ${format === 2 ?
+                    "text-white bg-black hover:bg-[#4C4C4C]"
+                    : "border-[1px] border-black text-black hover:bg-black hover:text-white"
+                }
         `}
-    >
-        {value}
-    </button>
-  )
+        >
+            {value}
+        </button>
+    )
 }
 
 export default ProductButton

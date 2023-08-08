@@ -28,7 +28,8 @@ const Header = () => {
 
     useEffect(() => {
         if (cartRef) clickOutside(cartRef, setActiveCart);
-    }, [cartRef, clickOutside, setActiveCart])
+        if(pathname === "/checkout") setActiveCart(false)
+    }, [cartRef, clickOutside, setActiveCart, pathname])
 
     return (
         <header className={`

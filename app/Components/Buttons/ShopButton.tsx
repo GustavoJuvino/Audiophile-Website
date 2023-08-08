@@ -6,10 +6,10 @@ const ShopButton: React.FC<ButtonProps> = ({
     value,
     click
 }) => {
-  return (
-    <button
-        onClick={click}
-        className="
+    return (
+        <button
+            onClick={click}
+            className="
                 w-auto
                 h-12
                 uppercase
@@ -26,7 +26,7 @@ const ShopButton: React.FC<ButtonProps> = ({
                 <IconRight className="ml-3" />
             </span>
         </button>
-  )
+    )
 }
 
 export default ShopButton;

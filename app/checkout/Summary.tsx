@@ -33,7 +33,7 @@ const Summary = () => {
           rounded-l
         bg-white
         "
-      >
+    >
       <div className="mobile:px-[33px] px-2 pb-8">
         <h1 className="text-lg uppercase mt-8">
           summary

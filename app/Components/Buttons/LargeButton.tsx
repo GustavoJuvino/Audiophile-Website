@@ -6,9 +6,9 @@ const LargeButton: React.FC<ButtonProps> = ({
   click
 }) => {
   return (
-    <button 
-        onClick={click}
-        className="
+    <button
+      onClick={click}
+      className="
             w-full
             h-12
             text-subTitle
@@ -19,7 +19,7 @@ const LargeButton: React.FC<ButtonProps> = ({
             hover:bg-light-raw-sienna
         "
     >
-        {value}
+      {value}
     </button>
   )
 }
