@@ -1,14 +1,14 @@
 <h1 align="center">🎧Audiophile Website</h1>
 
 <h4 align="center">
-    This project is a challenge that I took from <a href="https://www.frontendmentor.io/challenges/photosnap-multipage-website-nMDSrNmNW">frontendmentor.io </a> 
+    This project is a challenge that I took from <a href="https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx">frontendmentor.io </a> 
     which consists of building an e-commerce website related to sound electronic products🎧.<br>
 </h4>
 <br>
 
 <h4 align="center">
-    <a align="center" href="https://www.frontendmentor.io/solutions/responsive-designo-website-project-using-react-next-and-tailwind-7-QAd_C_Na">Front-end mentor challenge.</a> //
-     <a align="center" href="https://designo-multi-page-website-hazel.vercel.app/">Audiophile Website</a>
+    <a align="center" href="https://www.frontendmentor.io/solutions/responsive-audiophile-website-project-using-nextjs-and-tailwind-css-RG_gnwqtey">Front-end mentor challenge.</a> //
+     <a align="center" href="https://audiophile-website-lyart.vercel.app/">Audiophile Website</a>
 </h4>
 
 <br />
